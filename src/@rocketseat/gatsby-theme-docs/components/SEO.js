@@ -114,6 +114,6 @@ SEO.defaultProps = {
   title: 'Linux System Admin Test Prep',
   description: 'Test Prep for Linux System Administrator Certification',
   slug: '',
-  image: '/banner.jpg',
+  image: '/banner.png',
   children: '',
 };

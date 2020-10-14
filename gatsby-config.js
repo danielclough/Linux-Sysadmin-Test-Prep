@@ -6,7 +6,7 @@ module.exports = {
     siteDescription: `Test Prep for Linux System Administrator Certification`,
     siteUrl: `https://linuxtest.danielc.us`,
     siteAuthor: `Daniel Clough`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/banner.png`,
     siteLanguage: `en`,
     themeColor: `#7159c1`,
     basePath: `/`,
