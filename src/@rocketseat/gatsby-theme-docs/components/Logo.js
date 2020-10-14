@@ -5,7 +5,7 @@ export default function Logo(props) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="400"
-      height="400"
+      height="450"
       viewBox="0 0 137.11 165.14"
     >
       <g strokeWidth="0.353">

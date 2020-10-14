@@ -124,6 +124,7 @@ export const Item = styled.li`
     @media (max-width: 780px) {
       &.active-link {
         background: ${({ theme }) => theme.colors.shape};
+        fill: #ddd;
       }
     }
   }

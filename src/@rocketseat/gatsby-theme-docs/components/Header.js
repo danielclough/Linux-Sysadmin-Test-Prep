@@ -24,6 +24,7 @@ const Container = styled.header`
   }
 
   button {
+    color: #aaa;
     border: none;
     background: none;
     cursor: pointer;
