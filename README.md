@@ -34,7 +34,7 @@ If you can't find the answer, or don't understand what you found... DuckDuckGo i
 
 ---
 
-## [License and Copyright](https://github.com/danielclough/linux-sysadmin-test-prep/LICENCE)
+## [License and Copyright](https://github.com/danielclough/Linux-Sysadmin-Test-Prep/blob/main/LICENSE)
 
 Copyright for contributed content belongs content contributers and site owners.
 
