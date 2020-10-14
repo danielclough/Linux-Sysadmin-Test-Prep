@@ -1,0 +1,96 @@
+# Sidebar navigation
+
+- label: 'Introduction'
+  link: '/introduction'
+- label: Basics
+  items:
+    - label: 'Documentation'
+      link: '/basics/documentation'
+    - label: 'Archiving & Compression'
+      link: '/basics/archiving-and-compression'
+    - label: 'grep'
+      link: '/basics/grep'
+    - label: 'Finding Files'
+      link: '/basics/finding-files'
+    - label: 'cron'
+      link: '/basics/cron'
+    - label: 'Processes'
+      link: '/basics/processes'
+    - label: 'Logging'
+      link: '/basics/logging'
+    - label: 'File Manipulation'
+      link: '/basics/file-manipulation'
+    - label: 'Users & Permissions'
+      link: '/basics/users-and-permissions'
+    - label: 'Access Control Lists'
+      link: '/basics/access-control-lists'
+    - label: 'Package Management'
+      link: '/basics/package-management'
+    - label: 'Basic Scripting'
+      link: '/basics/basic-scripting'
+- label: Containers and Virtualization
+  items:
+    - label: 'LXC'
+      link: '/containers-and-virtualization/'
+    - label: 'Docker'
+      link: '/containers-and-virtualization/'
+- label: Networking
+  items:
+    - label: 'Routing'
+      link: '/networking/routing'
+    - label: 'DNS'
+      link: '/networking/dns'
+    - label: 'Firewall'
+      link: '/networking/firewall'
+    - label: 'Web Servers'
+      link: '/networking/web-servers'
+    - label: 'SSH'
+      link: '/networking/ssh'
+    - label: 'NFS, Samba, & FTP'
+      link: '/networking/ftp'
+    - label: 'Email'
+      link: '/networking/email'
+    - label: 'Time servers'
+      link: '/networking/time-servers'
+    - label: 'Network Scripting'
+      link: '/networking/network-scripting'
+- label: Storage
+  items:
+    - label: 'Rsync'
+      link: '/storage/rsync'
+    - label: 'Git'
+      link: '/storage/git'
+    - label: 'Disk Quotas'
+      link: '/storage/disk-quotas'
+    - label: 'Swap'
+      link: '/storage/swap'
+    - label: 'LVM'
+      link: '/storage/lvm'
+    - label: 'RAID'
+      link: '/storage/raid'
+    - label: 'Encryption'
+      link: '/storage/encryption'
+    - label: 'Storage Scripting'
+      link: '/storage/storage-scripting'
+- label: Booting and Deep System
+  items:
+    - label: 'GRUB'
+      link: '/boot-and-deep-system/'
+    - label: 'Systemd'
+      link: '/boot-and-deep-system/'
+    - label: 'Kernel Runtime Parameters'
+      link: '/boot-and-deep-system/'
+    - label: 'AppArmor'
+      link: '/boot-and-deep-system/'
+- label: Community
+  items:
+    - label: 'Github'
+      link: https://github.com/danielclough/lfs-test-prep
+    - label: 'Copyright'
+      link: https://github.com/danielclough/lfs-test-prep/LICENCE
+
+
+# - label: 
+#   items:    
+#     - label: ''
+#       link: '//'

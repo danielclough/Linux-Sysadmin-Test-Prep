@@ -1,0 +1,14 @@
+find -iname "*junk*" -delete
+find ./answers ! -name "*answer*" -delete
+sed -n '1p;2p;3p;9p' /danielsTestDrills/testFile-1 > testFile-2
+grep -i "daniel*.*pass the lfcs" testFile-1 >> testFile-2
+grep stuff testFile-1 | grep -v -e stuff[[:space:]]$ -e ^stuff >> testFile-2
+grep ! > testFile-3
+grep "[[:digit:]][st|nd|rd|th]" testFile-1 >> testFile-3
+grep ^daniel testFile-1 >> testFile-3
+ex -c 1m6 -c wq testFile-3
+sed -i  '/[J|j]unk/d' testFile-1
+sed -i '4d' testFile-1
+sed -i '/^stuff/d;/stuff\+[[:space:]]$/d' testFile-1
+find . -maxdepth 1 -type f -exec cksum {} + | uniq -uw 5 | cut -d '/' -f2 > answers/answerFile
+cat testFile-1 testFile-2 testFile-3 | sort | uniq -u >> answers/answerFile

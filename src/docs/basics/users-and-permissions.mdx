@@ -1,0 +1,51 @@
+---
+title: 'Users and Permissions'
+description: .
+---
+
+Create a new groups `oz`, `dogs`, `friends`.
+
+Create a new user `toto` with the home directory `/home/noPlace/`, make sure they use the original Bourne Shell, make their primary group `oz`, and add `dogs` as an extra group. Set the initial password as `IHeartDorothy` which should expire immediately.
+
+Give `oz` group members the ability to sudo without a password.
+
+Login to the `toto` account You should be forced to set a new password, change it to anything. 
+
+Create a script `/danielsTestDrills/cleanup.sh` that targets all files in `/danielsTestDrills/` except itself and `/danielsTestDrills/tempFile`, adds them to `/danielsTestDrills/answers/testFiles.tar`, lists the file names in `/danielsTestDrills/tempFile`, and then deletes them.
+
+Run that script.
+
+Append the `friends` group to `toto`'s account.
+
+Exit the `toto` session.
+
+---
+
+Create and execute a script `/danielsTestDrills/perms/perms.sh` which sources the file `/danielsTestDrills/perms/vars` sets: 
+	`$var0` with fully permissive read, write, and execute permissions. 
+    `$var1` as owned by user toto and group oz 
+    `$var2` with a sticky bit 
+    `$var3` as suid 
+    `$var4` as sgid 
+    `$var5` with an ACL giving write permissions to toto 
+    `$var6` as immutable 
+    `$var7` as append only
+    and echos "var# FAILED!" (eg. var7 FAILED!) in case of failure (hint: only one will fail if you do it right)
+
+---
+
+Search for files with the sticky bit set and change the name to `sticky`.
+
+Search for files with the setgid permissions set and change the name to `setGID`.
+
+Search for files with the setuid permissions set and change the name to `setUID`.
+
+Search for all files executable by anyone and delete them.
+
+Search all files readable by anyone and remove those permissions.
+
+Search for the file with toto's ACL write permissions and append the filename into `/danielsTestDrills/tempFile`
+
+---
+
+Remove `/danielsTestDrills/tempFile`

@@ -1,0 +1,37 @@
+egrep -c abeli+ WORDS & How many words include abel followed by one or more i in WORDS
+
+egrep -c abeli? WORDS & How many words include abel followed by zero or one i in WORDS
+
+egrep -c "\bes*\b" WORDS & How many whole words start with e followed by zero or more s in WORDS
+
+egrep -c "es{2}" WORDS & How many words include e followed by 2 s in WORDS
+
+egrep -c "es{2,}" WORDS & How many words include e followed by 2 or more s in WORDS
+
+egrep -c "es{2}\b" WORDS & How many words include e followed by 2 s - ending on the final s in WORDS
+
+egrep -c "es{2,}\b" WORDS & How many words include e followed by 2 or more s - ending on the final s in WORDS
+
+egrep -c "s{3,5}" WORDS & How many words include 3 to 5 s in WORDS
+
+egrep -c "(abc)" WORDS & How many words include the group abc in WORDS
+
+egrep -c "s(es)" WORDS & How many words include s followed by the sequence of es in WORDS
+
+egrep -c "s(es)*" WORDS & How many words include s followed by zero or more copies of the sequence es in WORDS
+
+egrep -c "s(es){2,5}" WORDS & How many words include s followed by 2 up to 5 copies of the sequence es in WORDS
+
+egrep -c "a(b|c)" WORDS & How many words include a followed by b or c (and captures b or c)  in WORDS
+
+egrep -c "(copy)?right"[^s] GPL-3  & How many matches for "copyright" and "right" (but not the plural forms) in GPL-3
+
+egrep "free[^[:space:]]+" GPL-3 | egrep -c "(GPL|General Public License)" & How many matches for "free" plus one or more non-whitespace characters and containing "GPL" or "General Public License" in GPL-3
+
+egrep -c "[AEIOUaeiou]{3}" GPL-3 & How many matches for triple-vowel words in GPL-3
+
+egrep -c "[[:alpha:]]{16,20}" GPL-3 & How many matches for words that have between 16 and 20 characters in GPL-3
+
+egrep -c "<.+>" GPL-3 & How many matches for characters one or more times included inside < and > in GPL-3
+
+egrep -c "<[^<>]+>" GPL-3 & How many matches for characters except < or > one or more times included inside < and > in GPL-3

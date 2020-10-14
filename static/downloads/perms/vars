@@ -1,0 +1,7 @@
+export var1=/danielsTestDrills/perms/permFile1
+export var2=/danielsTestDrills/perms/permFile2
+export var3=/danielsTestDrills/perms/permFile3
+export var4=/danielsTestDrills/perms/permFile4
+export var5=/danielsTestDrills/perms/permFile5
+export var6=/danielsTestDrills/perms/permFile6
+export var7=/danielsTestDrills/tempFile
