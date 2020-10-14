@@ -77,7 +77,7 @@ export default function SEO({ description, title, slug, image, children }) {
       <meta property="og:image" content={metaImage} />
       <meta property="og:image:secure_url" content={metaImage} />
       <meta property="og:image:alt" content="Banner" />
-      <meta property="og:image:type" content="image/jpg" />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1080" />
       <meta property="og:image:height" content="570" />
 
