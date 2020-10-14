@@ -77,9 +77,9 @@ export default function SEO({ description, title, slug, image, children }) {
       <meta property="og:image" content={metaImage} />
       <meta property="og:image:secure_url" content={metaImage} />
       <meta property="og:image:alt" content="Banner" />
-      <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpg" />
+      <meta property="og:image:width" content="4096" />
+      <meta property="og:image:height" content="2160" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={metaTitle} />
@@ -88,8 +88,8 @@ export default function SEO({ description, title, slug, image, children }) {
       <meta name="twitter:image" content={metaImage} />
       <meta name="twitter:image:src" content={metaImage} />
       <meta name="twitter:image:alt" content="Banner" />
-      <meta name="twitter:image:width" content="1200" />
-      <meta name="twitter:image:height" content="630" />
+      <meta name="twitter:image:width" content="4096" />
+      <meta name="twitter:image:height" content="2160" />
 
       <script type="application/ld+json">
         {JSON.stringify(schemaOrgJSONLD)}
