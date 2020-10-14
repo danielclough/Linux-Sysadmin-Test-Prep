@@ -1,4 +1,4 @@
-![Linux System Admin Test Prep](testprep.danielc.us/logo-words.png)
+![Linux System Admin Test Prep](https://github.com/danielclough/Linux-Sysadmin-Test-Prep/blob/main/static/banner.jpg)
 
 ## Welcome!
 
@@ -34,7 +34,7 @@ If you can't find the answer, or don't understand what you found... DuckDuckGo i
 
 ---
 
-## [License and Copyright](https://github.com/danielclough/linux-admin-test-prep/LICENCE)
+## [License and Copyright](https://github.com/danielclough/linux-sysadmin-test-prep/LICENCE)
 
 Copyright for contributed content belongs content contributers and site owners.
 
@@ -50,4 +50,4 @@ Each page has a link to Github.
 
 Feel free to make a pull request and help improve content.
 
-[Fork Me](https://github.com/danielclough/linux-admin-test-prep)
+[Fork Me](https://github.com/danielclough/linux-sysadmin-test-prep)

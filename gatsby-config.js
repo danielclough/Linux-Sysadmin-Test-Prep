@@ -4,7 +4,7 @@ module.exports = {
     siteTitle: `Linux Sysadmin Test Prep`,
     siteTitleShort: `Linux Sysadmin Test Prep`,
     siteDescription: `Test Prep for Linux System Administrator Certification`,
-    siteUrl: `https://lfcs.danielc.us`,
+    siteUrl: `https://linuxtest.danielc.us`,
     siteAuthor: `Daniel Clough`,
     siteImage: `/banner.jpg`,
     siteLanguage: `en`,
@@ -17,7 +17,7 @@ module.exports = {
       options: {
         configPath: `src/config`,
         docsPath: `src/docs`,
-        githubUrl: `https://github.com/danielclough/Linux-Sysadmin-Test-Prep`,
+        githubUrl: `https://github.com/danielclough/linux-sysadmin-test-prep`,
         baseDir: ``,
       },
     },
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://lfcs.danielc.us`,
+        siteUrl: `https://linuxtest.danielc.us`,
       },
     },
     `gatsby-plugin-offline`,
