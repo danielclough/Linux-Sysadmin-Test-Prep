@@ -32,7 +32,7 @@ export default function GlobalStyle() {
 
         h1 {
           font-size: 2rem;
-          color: #ddd;
+          color: ${theme.colors.title};
           font-weight: normal;
           margin-bottom: 1rem;
         }
@@ -54,13 +54,13 @@ export default function GlobalStyle() {
         h4,
         h5,
         h6 {
-          color: #bbb;
+          color: ${theme.colors.title};
           margin: .7rem 0 .5rem 0;
           font-weight: normal;
         }
 
         p {
-          color: #737380;
+          color: ${theme.colors.text};
           font-size: 1.2rem;
           line-height: 1.4rem;
           margin-bottom: 1rem;
@@ -82,7 +82,7 @@ export default function GlobalStyle() {
         }
 
         a {
-          color: #737380;
+          ${theme.colors.text};
           font-weight: bold;
 
           &:hover {
