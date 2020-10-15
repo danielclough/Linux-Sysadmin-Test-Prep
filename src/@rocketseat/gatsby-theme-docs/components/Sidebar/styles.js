@@ -43,7 +43,7 @@ export const Container = styled.aside`
 
 export const LogoContainer = styled.div`
   width: 100%;
-  height: 70%;
+  height: 100%;
 
   a {
     width: 100%;
@@ -58,6 +58,7 @@ export const List = styled.ul`
   list-style: none;
   width: 100%;
   padding-left: 0;
+  margin-top: 2rem;
 
   display: flex;
   justify-content: flex-start;
@@ -71,7 +72,7 @@ export const Heading = styled.li`
   text-transform: uppercase;
   font-size: 1.7rem;
   font-weight: bold;
-  margin-top: 1.3rem;
+  margin-top: 1rem;
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.32rem;
 `;
@@ -124,7 +125,6 @@ export const Item = styled.li`
     @media (max-width: 780px) {
       &.active-link {
         background: ${({ theme }) => theme.colors.shape};
-        fill: #ddd;
       }
     }
   }
