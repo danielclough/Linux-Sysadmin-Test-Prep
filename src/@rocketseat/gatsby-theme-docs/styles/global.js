@@ -82,11 +82,11 @@ export default function GlobalStyle() {
         }
 
         a {
-          ${theme.colors.text};
+          color: #77f;
           font-weight: bold;
 
           &:hover {
-            color: ${theme.colors.primary}!important;
+            color: #00f;
             transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
             opacity: 1 !important;
           }
