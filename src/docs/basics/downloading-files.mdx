@@ -8,38 +8,56 @@ description: .
 
 ### Basics
 
-Quiet
+
+- Quiet
+
 `wget -q <address>`
 
-Not verbose (mostly quite)
+
+- Not verbose (mostly quite)
+
 `wget -nv <address>`
 
-Chagne name
+
+- Chagne name
+
 `wget -O <filename> <address>`
 
-Download multiple URLs
+
+- Download multiple URLs
+
 1. create file.txt with links (one per line)
 2. `wget -i file.txt`
 
-Throttle download speeds
+
+- Throttle download speeds
+
 `wget --limit-rate 400k <address>`
 
-Resume download
+
+- Resume download
+
 `wget -c <address>`
 
-Download in the background
-wget -b <address>
+
+- Download in the background
+
+`wget -b <address>`
 
 ### Advanced
 
-Mirror website
+
+- Mirror website
+
 Options | Action
 --- | ---
 `-m` | turn on mirroring
 `-k` | make links suitable for local browsing
 `-w <sec>` | wait n seconds between each download
 
-Log output to a file
+
+- Log output to a file
+
 `wget -o file.log -r -l 3 --spider <address>`
 `wget -a file.log <address>`
 
@@ -51,20 +69,32 @@ Options | Action
 `-l`       |  maximum level of recursion
 `--spider` |  spider mode
 
-Find broken links
+
+- Find broken links
+
 `grep -B 2 '404' file.log | grep "http" | cut -d " " -f 4 | sort -u`
 
-Change user agent
+
+- Change user agent
+
 `wget -U '<string>' <address>`
 
-View response headers
+
+- View response headers
+
 `wget -S --spider <address>`
 
-Add username and password
+
+- Add username and password
+
 `wget ‐‐http-user=daniel ‐‐http-password=JZXGAo34mz <address>`
 
-Save cookies
+
+- Save cookies
+
 `wget ‐‐cookies=on ‐‐save-cookies cookies.txt ‐‐keep-session-cookies ‐‐post-data 'user=daniel&password=JZXGAo34mz' <address>`
 
-Load cookies
+
+- Load cookies
+
 `wget ‐‐cookies=on ‐‐load-cookies cookies.txt ‐‐keep-session-cookies <address>`
