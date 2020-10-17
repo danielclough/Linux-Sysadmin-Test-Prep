@@ -1,0 +1,124 @@
+---
+title: Processes
+description: .
+---
+
+## ps
+
+### Try These:
+- `ps`
+- `ps -f`
+- `ps -F`
+- `ps -u <username>`
+- `ps -g <groupname>`
+- `ps <PID>`
+- `ps -C <CMD>`
+- `ps -eH`
+- `ps -u --forest`
+- `ps -ef | head -3`
+- `ps aux | head -3`
+- `ps aux --sort=-pcpu | head -3`
+- `ps aux --sort=-pmem | head -3`
+- `ps -o pid,uname,comm,pcpu,pmem -C <CMD>`
+- `pstree` (technically a different command)
+
+---
+
+## pgrep
+- `pgrep -lu <username> <CMD>`
+- `pgrep -lg <username> <CMD>`
+
+---
+
+## kill
+- 1. `sleep 100 &`
+	2. `pgrep sleep`
+	3. `kill -v <sleep's PID>`
+- 1. `sleep 100 &`
+	2. `pkill -v pkill sleep`
+-`kill -L`
+
+Signal | Signal # | Meaning
+--- | --- | ---
+TERM | 15 | Stonger than INT | Default.
+KILL | 9 | Is unblockable | Terminates at kernel level.
+INT | 2 | Same as `<Ctl-C>` keyboard shortcut. Can be caught and ignored.
+QUIT | 3 | Like TERM with default coredump.
+
+---
+
+## nice/renice
+
+
+---
+
+## jobs
+
+
+---
+
+## fg
+
+
+---
+
+## top
+
+### Top bar field meanings
+
+#### Top Line Meaning (5 fields)
+
+1 | 2 | 3 | 4 | 5
+--- | --- | --- | --- | --- 
+Uptime | # of users logged in | one minute | five minutes | 15 minutes 
+
+Second Line is obvious to look at...
+
+#### Third line is CPU time spent on: (7 fields)
+
+1 | 2 | 3 | 4 | 5 | 6 | 7 
+--- | --- | --- | --- | --- | --- | ---
+“user space” | Kernel "system" | "nice" processes | "idle" | "waiting" for I/O | "hardware interrupts" | "software interrupts"
+
+Fourth and fifth lines are obvious.
+
+
+#### White Bar Meaning (12 fields)
+
+1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- 
+Process ID | Username | Priority | Nice Value | Virtual Memory Used | Resident Memory Used | Shared Memory Used | Status | CPU Used | Memory Used | CPU Time Used | Command
+
+
+#### Status Initial Meaning
+
+Status Initial | Meaning
+--- | ---
+D | Uninterruptible sleep
+R | Running
+S | Sleeping
+T | Traced (stopped)
+Z | Zombie
+
+### Interactive commands
+
+Key | Sort by:
+--- | ---
+P | %CPU
+M | %MEM
+N | PID 
+T | TIME+
+u | Filter for a users process
+c | Toggle COMMAND display
+1 | Display individual CPU statistics
+I | Only active tasks
+n | Number of lines
+r | Renice a process
+k | Kill a process (enter sigterm) 
+A | Display four areas in the process list
+a | Move from area to area
+W | Save settings as default
+d | Set refresh rate
+Space | Force refresh
+
+---
