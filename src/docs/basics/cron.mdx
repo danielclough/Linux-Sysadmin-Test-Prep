@@ -1,8 +1,42 @@
 ---
 title: 'cron'
-description: .
+description: Automate everything!
 ---
 
 - Run `quiz` with the argument `cron`
   This quiz matches strings instead of evaluating commands, so input must be entered without extra whitespace in the format specified by the question.
 
+---
+
+## Tips
+
+### Commands
+
+Command | Action
+--- | ---
+crontab -l | Lists all the user's cron tasks.
+crontab -e | Edit for root 
+crontab -e -u daniel | Edit for user Daniel
+crontab -r | Removes entry from spooler, but not crontab file.
+
+### Troubleshooting
+
+- No environment variables! Use absolute paths!
+
+- `ps ax | grep cron`
+
+- Start, restart, and check status of cron.service
+
+- `* * * * * /bin/echo "cron works" >> /tmp/cronTest`
+    (User syntax doesn't have the User field, root does.)
+
+- Test script without cron.
+
+- Check permissions for script and any redirections.
+
+- Don't suppress output while debugging.
+    `2>&1` to a file which you have write access instead of /dev/null. `2>&1 >> cron.out` will append to user's home directory
+
+- `grep cron /var/log/syslog`
+
+- Add `cron.crit /var/log/cron.log` in /etc/rsyslog.d/50-default.conf and `sudo /etc/init.d/rsyslog reload`
