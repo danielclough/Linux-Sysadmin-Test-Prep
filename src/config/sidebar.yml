@@ -1,7 +1,5 @@
 # Sidebar navigation
 
-- label: 'Introduction'
-  link: '/introduction'
 - label: Basics
   items:
     - label: 'Documentation'
