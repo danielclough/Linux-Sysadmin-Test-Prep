@@ -2,3 +2,57 @@
 title: Linux Containers (LXC)
 description:
 ---
+
+
+Setup:
+1. `sudo snap install lxd`
+1. `echo 'daniel veth lxcbr0 10' | sudo tee -a /etc/lxc/lxc-usernet`
+1. `mkdir -p ~/.config/lxc`
+1. `cp /etc/lxc/default.conf ~/.config/lxc/default.conf`
+1. `echo 'lxc.idmap = u 0 100000 65536
+lxc.idmap = g 0 100000 65536' >> ~/.config/lxc/default.conf`
+
+Usage:
+lxc launch imageserver:imagename instancename -p profile1 -c key1=value
+
+lxc launch imageserver:imagename instancename -p profile1 -p profile2
+
+lxc launch imageserver:imagename instancename -c key1=value -c key2=value
+
+1. `systemd-run --unit=myshell --user --scope -p "Delegate=yes" lxc-start <container-name>`
+2. `chmod a+rx ~/.local ~/.local/share`
+3. `reboot/logout`
+4. `lxc-create -t download -n <container-name>`
+5. `lxc-start <container-name>`
+
+Autostart:
+1. `echo "lxc.start.auto = 1" | tee -a /var/lib/lxc/autostart_container/config`
+2. `lxc-autostart -a`
+    
+- `lxc-info <container-name>`
+- `lxc-ls -f`
+- `lxc-attach <container-name>`
+- `lxc-stop <container-name>`
+- `lxc-destroy <container-name>`
+
+---
+Flags:
+
+-p profilename   # apply a profile
+
+-c key=value   # apply a config key/value 
+
+
+Usage:
+
+lxc profile set profilename key=value
+
+
+
+---
+
+lxc profile show default
+
+lxc profile create profilename
+
+lxc profile edit profilename

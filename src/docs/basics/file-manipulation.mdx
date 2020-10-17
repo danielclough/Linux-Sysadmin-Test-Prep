@@ -3,6 +3,29 @@ title: File Manipulation
 description:
 ---
 
+
+### sed
+
+`sed 's/and/\&/g;s/^I/You/g' example.txt` (multiple search and replace global)
+
+`sed -n '/^Oct  3/ p' /var/log/syslog | sed -n 1,5p` (print only lines 1-5 starting with "Oct 3")
+
+`sed  '/junk/d' file.txt` (delete "junk" lines)
+
+`sed 'G' file.txt` (add new line after each line)
+
+### uniq, sort, cut, tr
+
+`cat /var/log/syslog | uniq -c -w 6` (count, 6 wide [date space])
+
+`du -sch /var/* | sort -h` ( file usage - summarize, total, human readable | sort human numerical )
+
+`cat file.txt | tr [:lower:] [:upper:]`
+
+`last | tr -s ' ' | cut -d' ' -f1,3 | sort -k2 | uniq`
+
+---
+
 ## Complete each exercise in a single line of code.
 
 1. There are files we won't want mixed in with files we do want. 

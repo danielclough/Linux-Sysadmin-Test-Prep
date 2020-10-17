@@ -2,3 +2,41 @@
 title: Kernel-based Virtual Machine (KVM)
 description:
 ---
+
+### KVM
+
+Install:
+- `grep -e vmx -e svm /proc/cpuinfo`
+- `sudo apt install kvm* qemu* libvirt*`
+- `sudo systemctl enable libvirtd`
+- `sudo systemctl start libvirtd`
+
+
+Save space on drive:
+1. `sudo mv /var/lib/libvirt/images /largeDisk/images`
+2. `sudo ln -s /largeDisk/images /var/lib/libvirt/images`
+
+Create VM
+1. `sudo qemu-img create -f qcow2 /var/lib/libvirt/images/TinyCore.qcow2 24M`
+2. `sudo qemu-system-x86_64 -hda /var/lib/libvirt/images/TinyCore.qcow2 \
+    -cdrom /home/daniel/Distros/TinyCorePure64-11.1.iso`
+
+---
+### virsh
+
+`virsh help <command>`
+
+`virsh list --all`
+
+`virsh start <name>`
+
+`virsh save <name> <saved>`
+
+Other important commands:
+`restore <saved>`, `autostart`, `reboot`, `suspend`, `resume`, `shutdown`, `destroy`, `undefine`
+
+Create from xml:
+`virsh dumpxml <name> <name>.xml`
+`virsh create <name>.xml` 
+
+---

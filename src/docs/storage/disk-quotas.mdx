@@ -2,3 +2,31 @@
 title: Disk Quotas
 description:
 ---
+
+### Quotas
+
+- sudo apt install quota
+
+Argument | Full Argument | Meaning 
+:-------------: | :----------: | :----------- 
+-a | --all | all automatically mounted, non-NFS filesystems in /etc/fstab 
+-u | --user | user quotas; default 
+-g | --group |group quotas 
+-P | --project | project quotas 
+
+
+1. add `usrquota` to `/etc/fstab` for `/partition` (can also use `grpquota`)
+    - `sudo mount -o remount /partition`
+    - `sudo cat /proc/mounts |grep quota`
+2. `sudo quotacheck -u /partition` (`-g` if using `grpquota`)
+3. `sudo quotaon -u /partition`
+4. `sudo edquota -u username`
+    - single block is the same as one kilobyte of disk space
+
+- `sudo setquota -u username 200M 220M 0 0 /partition` ( 200M soft; 220 hard; 0 0 are inode limits)
+
+- `sudo quota -vs username` (quota info `-v` verbose;`-s` human readable)
+- `sudo repquota -s /partition` (report quota)
+
+
+---

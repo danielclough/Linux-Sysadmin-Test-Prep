@@ -2,3 +2,112 @@
 title: Basic Scripting
 description:
 ---
+
+
+### arguments
+
+Argument | Meaning
+---|---
+$0   | script file name 
+$1-9 | arguments
+$#   | number of command line arguments passed
+$@   | list of arguments passed
+$?   | exit status of last process run
+$$   | PID of script
+$USER | user executing the script
+$RANDOM | random number
+
+
+``` excludeFromBackup.sh
+#!/bin/bash
+# Usage: excludeFromBackup.sh <BACKUP_DIR> <EXCLUDE_FILETYPE>
+
+BACKUP_DIR=$1
+EXCLUDE_FILETYPE=$2
+
+tar X <(for i in $BACKUP_DIR/*; 
+do file $i | grep -i $EXCLUDE_FILETYPE; 
+    if [ $? -eq 0 ]; 
+        then echo $i; 
+    fi; 
+done) -cJf backup.tar.xz $BACKUP_DIR/*
+```
+
+### Conditions
+
+```
+if CONDITION; then 
+	COMMANDS;
+else
+	OTHER-COMMANDS 
+fi
+```
+
+File Conditions | True IF
+---|---
+-a file | exists
+-d file | is a directory
+-f file | is a regular file
+-u file | SUID (set user ID) bit is set
+-g file | SGID bit is set
+-k file | sticky bit is set
+-r file | is readable
+-s file | is not empty
+-w file | is writable
+-x file | is true if is executable
+
+String Conditions | True IF
+---|---
+string1 = string2  | strings are equal
+string1 != string2 | strings are not equal
+STRING =~ REGEX | string equals regex
+
+Integer Conditions | True IF
+---|--- 
+-eq | equal
+-ne | not equal
+-lt | less than
+-le | less than or equal
+-gt | greater than
+-ge | greater than or equal
+
+### For
+```
+for item in SEQUENCE; do 
+		COMMANDS; 
+done
+```
+
+``` checkPort.sh
+#!/bin/bash
+
+for port in $(cat ports.txt); do
+	sudo netstat -lnp | grep -w $port
+	if [ $? -eq 0 ]; then
+        	echo $port "is [ACTIVE]"
+	else
+        	echo $port "is [INACTIVE]"
+	fi
+done
+```
+
+### While
+```
+while EVALUATION_COMMAND; do 
+		EXECUTE_COMMANDS; 
+done
+```
+
+``` teaTasting.sh
+#!/bin/bash
+# Usage: teaTasting.sh -n Name -t Tea -d Date
+
+while getopts ":n:t:d:" arg; do
+  case $arg in
+    n) Name=$OPTARG;;
+    t) Tea=$OPTARG;;
+    d) Date=$OPTARG;;
+  esac
+done
+echo -e "\n$Name  $Tea  $Date\n"
+```

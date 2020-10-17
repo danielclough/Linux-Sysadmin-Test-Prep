@@ -2,3 +2,36 @@
 title: Redundant Array of Independent Disks (RAID)
 description:
 ---
+
+### Sofware RAID with mdadm (multiple disks admin).
+
+### Create
+1. `fdisk /dev/sdX` (t fd; for each)
+2. `partprobe -s`
+3. `mdadm -C /dev/md0 -l1 -n2 /dev/sdX# /dev/sdY#` (`-C` is `--create`; `-l1` is `--level=1`; `-n2` is `--raid-disks=2`)
+    - `cat /proc/mdstat`
+4. `mkfs.ext4 /dev/md0`
+5. `mount /dev/md0 <MountPoint>`
+For automount at boot:
+6. `mdadm --detail --scan | tee -a /etc/mdadm/mdadm.conf`
+8. `echo 'UUID=whatever /mnt/md0 ext4 defaults,nofail 0 0' | tee -a /etc/fstab`
+For early boot process availability:
+7. `update-initramfs -u`
+
+### Remove
+1. `mdadm --stop /dev/md0`
+2. `mdadm --remove /dev/md0`
+    - `cat /proc/mdstat`
+3. `mdadm --zero-superblock -f /dev/sdX` (for each)
+4. `update-initramfs -u`
+
+### Levels 
+Level  |             Description          | Min. Drives | Fault Tolerance
+:-------------: | :----------: | :----------: | :-----------:
+RAID 0 |    Block-level striping; no parity or mirroring    | 2 | None
+RAID 1 |    Mirroring; no parity or striping                | 2 | None
+RAID 4 |    Block-level striping; dedicated parity          | 3 | One Drive
+RAID 5 |    Block-level striping; distributed parity        | 3 | One Drive
+RAID 6 |    Block-level striping; double distributed parity | 4 | Two Drives
+
+---

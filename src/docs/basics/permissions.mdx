@@ -1,23 +1,23 @@
 ---
-title: 'Users and Permissions'
-description: .
+title: Permissions
+description:
 ---
 
-Create a new groups `oz`, `dogs`, `friends`.
+## Files
 
-Create a new user `toto` with the home directory `/home/noPlace/`, make sure they use the original Bourne Shell, make their primary group `oz`, and add `dogs` as an extra group. Set the initial password as `IHeartDorothy` which should expire immediately.
+### chmod
+- u+s (SUID)
+- g+s (SGID) 
+- +t (Sticky)
 
-Give `oz` group members the ability to sudo without a password.
 
-Login to the `toto` account You should be forced to set a new password, change it to anything. 
 
-Create a script `/danielsTestDrills/cleanup.sh` that targets all files in `/danielsTestDrills/` except itself and `/danielsTestDrills/tempFile`, adds them to `/danielsTestDrills/answers/testFiles.tar`, lists the file names in `/danielsTestDrills/tempFile`, and then deletes them.
-
-Run that script.
-
-Append the `friends` group to `toto`'s account.
-
-Exit the `toto` session.
+### chattr
+- append only (a)
+- compressed (c)
+- no copy on write (C)
+- immutable (i)
+- secure deletion (s)
 
 ---
 

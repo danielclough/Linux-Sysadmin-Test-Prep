@@ -1,175 +1,88 @@
 ---
 title: Finding Files
 description: .
-image:
 ---
 
+In folder: `find ./test -name "filename.txt"`
 
-List all files in current and sub directories
-`find`
+With wildcard: `find ./test -name "*.txt"`
 
-Search specific directory or path
-`find ./test`
+Ignore case: `find ./test -iname "*.txt"` 
 
-The following command searches for files by their name.
+Recursion level: `find ./test -maxdepth 2 -name "*.txt"`
 
-`find ./test -name "abc.txt"`
+Invert: `find ./test -not -name "*.txt"`
 
-We can also use wildcards
+Invert: `find ./test ! -name "*.txt"`
 
-`find ./test -name "*.txt"`
+Combine: `find ./test -name 'filename*' ! -name '*.txt'`
 
-Ignore the case
+OR: `find -name '*.txt' -o -name '*.txt'`
 
-`find ./test -iname "*.txt"`
+Only files: `find ./test -type f -name "filename*"`
 
-Limit depth of directory traversal
-`find ./test -maxdepth 2 -name "*.txt"`
-`find ./test -maxdepth 1 -name *.txt`
+Only directories: `find ./test -type d -name "filename*"`
 
-Invert match
-`find ./test -not -name "*.txt"`
-find ./test ! -name "*.txt"
+Multiple directories: `find ./test ./dir2 -type f -name "filename*"`
 
-Combine multiple search criterias
-`find ./test -name 'abc*' ! -name '*.txt'`
+Hidden files: `find ~ -type f -name ".*"`
 
-OR operator
-`find -name '*.txt' -o -name '*.txt'`
+Permissions: `find . -type f -perm 0664`
 
-Search only files or only directories
-`find ./test -name abc*`
+sgid/suid nubers: `find / -perm 2644`
 
+sgid/suid symbols: `find / -maxdepth 2 -perm /u=s`
 
-Only files
-`find ./test -type f -name "abc*"`
-Only directories
-`find ./test -type d -name "abc*"`
+Read Only files: `find /etc -maxdepth 1 -perm /u=r`
 
-Search multiple directories together
+Executable files: `find /bin -maxdepth 2 -perm /a=x`
 
-`find ./test ./dir2 -type f -name "abc*"`
+By user: `find . -user username -name '*.txt'`
 
-Find hidden files
-`find ~ -type f -name ".*"`
+By group: `find /var/www -group groupname`
 
-Find files with certain permissions
-`find . -type f -perm 0664`
-`find . -type f ! -perm 0777`
+In home: `find ~ -name "*.txt"`
 
-10. Find files with sgid/suid bits set
+All 50MB files: `find / -size 50M`
 
-# find / -perm 2644
+greater than 50MB and less than 100MB: `find / -size +50M -size -100M`
 
-`find / -maxdepth 2 -perm /u=s 2>/dev/null`
+List the largest file in the current directory and its subdirectory: `find . -type f -exec ls -s {} \; | sort -n -r | head -1`
 
-Find readonly files
+List the 5 smallest file in the current directory and its subdirectory: `find . -type f -exec ls -s {} \; | sort -n | head -5`
 
-Find all Read Only files.
+Find all files that are empty: `find /tmp -type f -empty`
 
-`find /etc -maxdepth 1 -perm /u=r`
+All empty directories: `find ~/ -type d -empty`
 
-Find executable files
-`find /bin -maxdepth 2 -perm /a=x`
+List finds as ls: `find . -exec ls -ld {} \;`
 
-Find files owned to particular user
-`find . -user bob`
+Remove all text files in the tmp directory: `find /tmp -type f -name "*.txt" -exec rm -f {} \;`
 
-`find . -user bob -name '*.txt'`
+Delete files larger than 100MB: `find /home/username/dir -type f -name *.log -size +10M -exec `rm -f {} \;
 
-# find /var/www -group developer
+Delete empty directories: `find <DIR> -type d -empty -delete`
 
+Write .tar filenames, one per line, with relative paths: `cd <DIR> && find . -name '*.tar' > toBeCompressed.txt​`
 
-`find ~ -name "hidden.txt"`
+Delete all executable files: `find <DIR> -type f -executable -delete`
 
-Find files modified N days back
+Change 777 fiels to 644: `find <DIR> -type f -perm 777 -print -exec chmod 644 {} \;`
 
-To find all the files which are modified 50 days back.
+Change read only directories to 755: `find <DIR> -type d /u=r -print -exec chmod 755 {} \;`
 
-# find / -mtime 50
+Change ownership of all group developer files and directories to group and user admin: `find <DIR> -group developer -print -exec chown admin:admin {} \;`
 
+Accessed (read), Modified (data), and Changed (metadata like chmod)
 
-Find all files that were accessed in the last 50 days.
+Modified 50 days back: `find / -mtime 50`
 
-# find / -atime 50
+Accessed in the last 50 days: `find / -atime 50`
 
-Find files modified in a range of days
+Modified between 50 to 100 days ago: `find / -mtime +50 –mtime -100`
 
-Find all files that were modified between 50 to 100 days ago.
+Changed within the last 1 hour: `find /home/username -cmin -60`
 
-# find / -mtime +50 –mtime -100
+Modified in last 1 hour: `find / -mmin -60`
 
-Find files changed in last N minutes.
-
-Find files modified within the last 1 hour.
-
-`find /home/bob -cmin -60`
-
-1Files modified in last hour
-
-To find all the files which are modified in last 1 hour.
-
-# find / -mmin -60
-
-20. Find Accessed Files in Last 1 Hour
-
-To find all the files which are accessed in last 1 hour.
-
-# find / -amin -60
-
-Find files of given size
-
-Search files and directories based on size. To find all 50MB files, use.
-
-# find / -size 50M
-
-Find files in a size range
-
-To find all the files which are greater than 50MB and less than 100MB.
-
-`find / -size +50M -size -100M`
-
-Find largest and smallest files
-
-The find command when used in combination with the ls and sort command can be used to list out the largest files.
-The following command will display the 5 largest file in the current directory and its subdirectory. This may take a while to execute depending on the total number of files the command has to process.
-
-`find . -type f -exec ls -s {} \; | sort -n -r | head -5`
-
-Similary when sorted in ascending order, it would show the smallest files first
-
-`find . -type f -exec ls -s {} \; | sort -n | head -5`
-
-Find empty files and directories
-
-The following command uses the "empty" option of the find command, which finds all files that are empty.
-
-# find /tmp -type f -empty
-
-To file all empty directories use the type "d".
-
-`find ~/ -type d -empty`
-
-Really very simple and easy
-Some advanced operations
-
-The find command not only finds files based on a certain criteria, it can also act upon those files using any linux command. For example, we might want to delete some files.
-
-Here are some quick examples
-2List out the found files
-
-Lets say we found files using find command, and now want to list them out as the ls command would have done. This is very easy.
-
-`find . -exec ls -ld {} \;`
-
-Delete all matching files or directories
-
-The following command will remove all text files in the tmp directory.
-
-`find /tmp -type f -name "*.txt" -exec rm -f {} \;`
-
-The same operating can be carried out with directories, just put type d, instead of type f.
-
-Lets take another example where we want to delete files larger than 100MB
-
-`find /home/bob/dir -type f -name *.log -size +10M -exec `rm -f {} \;
+Accessed Files in Last 1 Hour: `find / -amin -60`

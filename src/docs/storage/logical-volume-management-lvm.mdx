@@ -2,3 +2,25 @@
 title: Logical Volume Management (LVM)
 description:
 ---
+
+### logical volumes
+
+1. `fdisk /dev/sdX` (t 8e; for each)
+2. `partprobe -s` 
+3. `pvcreate /dev/sdX  /dev/sdY`
+    - `pvdisplay` or `pvs -v`
+    - `wipefs /dev/sdX` may clear errors
+4. `vgcreate <VG> /dev/sdX /dev/sdY` 
+    - `vgdisplay -v` or `vgs`
+5. `lvcreate -L <SIZE> -n <LV> <VG>` (-L fixed size; -l percentage of remaining space)
+    - `lvdisplay` or `lvs`
+6. `mkfs.ext4 /dev/<VG>/<LV>`
+7. `mount /dev/<VG>/<LV> <MountPoint>`
+
+- `lvresize -r -L <SIZE> <LV>`  (-L -2.5G; -l +100%FREE)
+- `vgextend <VG> /dev/sdZ`
+
+- `lvremove`, `vgremove`, `pvremove`
+
+
+---

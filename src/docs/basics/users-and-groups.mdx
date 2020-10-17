@@ -1,0 +1,38 @@
+---
+title: 'Users and Groups'
+description: .
+---
+
+## User/Group Management
+
+`usermod -d /home/heart -s /bin/sh -e 2020-10-30 user` 
+
+`usermod -L user` (--lock)
+
+`usermod -U user` (--unlock)
+
+`visudo -f /etc/sudoers.d/username`
+```/etc/sudoers.d/username
+user ALL=NOPASSWD:/path/to/command
+```
+
+---
+
+Create a new groups `oz`, `dogs`, `friends`.
+
+Create a new user `toto` with the home directory `/home/noPlace/`, make sure they use the original Bourne Shell, make their primary group `oz`, and add `dogs` as an extra group. Set the initial password as `IHeartDorothy` which should expire immediately.
+
+Give `oz` group members the ability to sudo without a password.
+
+Login to the `toto` account You should be forced to set a new password, change it to anything. 
+
+Create a script `/danielsTestDrills/cleanup.sh` that targets all files in `/danielsTestDrills/` except itself and `/danielsTestDrills/tempFile`, adds them to `/danielsTestDrills/answers/testFiles.tar`, lists the file names in `/danielsTestDrills/tempFile`, and then deletes them.
+
+Run that script.
+
+Append the `friends` group to `toto`'s account.
+
+Exit the `toto` session.
+
+---
+

@@ -2,3 +2,22 @@
 title: Swap
 description:
 ---
+
+### swap
+
+1. Create swapfile or partition with `dd` or `fdisk`
+    - `dd if=/dev/zero of=swapfile bs=1M count=1024`
+    - `fdisk /dev/sdX` (t 82)
+2. `mkswap swapfile` (or /dev/sdX)
+    - `cat /proc/swaps` (to verify)
+3. `vim /etc/fstab`
+    ```/etc/fstab
+    /swapfile       swap    swap    defaults      0       0
+    ```
+4. `swapon swapfile`
+    - `swapon -s` (to verify)
+
+- `swapoff swapfile`
+
+
+---

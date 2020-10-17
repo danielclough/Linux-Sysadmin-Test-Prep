@@ -1,0 +1,48 @@
+---
+title:
+description:
+---
+
+### ulimit
+To make temporary changes use `ulimit`
+- `ulimit <arguments> <value> username`
+
+Argument | Meaning 
+ :-------------: | ----------
+-S  |  use the 'soft' resource limit
+-H  |  use the 'hard' resource limit
+-a  |  all current limits are reported
+-b  |  the socket buffer size
+-c  |  the maximum size of core files created
+
+`ulimit --help` has exhaustive list.
+
+To make permanent changes edit `/etc/security/limits.conf` (**well documented**)
+###### format:
+`<domain> <type> <item> <value>`
+
+###### domains:
+- @group
+- %wildcard or *wildcard 
+- user 
+
+###### types:
+- soft
+- hard
+
+###### items:
+Items | Description 
+:-------------: | :-----------
+core | Core file size (in KB)
+data | max data size (KB) 
+fsize | maximum filesize (KB) 
+memlock | max locked-in-memory address space (KB) 
+nofile | max number of open file descriptors 
+cpu | max CPU time (MIN) 
+nproc | max number of processes 
+maxlogins | max number of logins for this user 
+nice | max nice priority allowed to raise to values: [-20, 19] 
+
+- changes take effect after re-login
+
+---

@@ -7,6 +7,34 @@ To `grep` is to **G**lobally search for a **R**egular **E**xpression and **P**ri
 
 There are a few implementaions of `grep`, `egrep` "extended grep" being the most important.
 
+
+
+### grep
+
+`grep -r content -l / --exclude-dir=public` (recursive grep for content in / and list filename)
+
+`grep -w word file.txt` (grep exact word)
+
+`grep -v junk file.txt` (grep lines WITHOUT junk)
+
+`grep "this\|that" file.txt` (grep for this OR that)
+
+`grep -v junk file.txt | grep content` (grep for content without junk)
+
+`grep cont.nt file.txt` (grep for word with unknown single character)
+
+`grep [uo]n file.txt` (grep for un OR on)
+
+`grep [^uo]n file.txt` (grep for anything before n except u and o)
+
+`ls -l /etc | grep rc[0-9]` ( grep for numbered rc files in /etc; same result as using [[:digit:]])
+
+`grep "kubelet\[[[:digit:]]\+\]" /var/log/syslog`
+
+`grep "\([pP]ost\( *\|\-\)[mM]odern\)" file.txt` (grep post modern, post-modern, PostModern)
+
+---
+
 1. Create a symlink to the file `/danielsTestDrills/quizfiles/quiz` to a folder in your PATH.
 2. Prepare the `GPL-3` file:
   - Assuming you are on Ubuntu:

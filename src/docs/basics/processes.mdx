@@ -13,13 +13,14 @@ description: .
 - `ps -g <groupname>`
 - `ps <PID>`
 - `ps -C <CMD>`
-- `ps -eH`
-- `ps -u --forest`
 - `ps -ef | head -3`
 - `ps aux | head -3`
 - `ps aux --sort=-pcpu | head -3`
 - `ps aux --sort=-pmem | head -3`
 - `ps -o pid,uname,comm,pcpu,pmem -C <CMD>`
+- `ps -eo pid,ppid,ni,pri,cmd,%cpu,%mem --sort=-%cpu | head -3`
+- `ps -eH`
+- `ps -u --forest`
 - `pstree` (technically a different command)
 
 ---

@@ -2,3 +2,18 @@
 title: Linux Unified Key Setup (LUKS)
 description:
 ---
+
+### luks
+
+`fdisk /dev/sdX`
+`partprobe /dev/sdX`
+`cryptsetup luksFormat /dev/sdX1`
+`cryptsetup luksOpen /dev/sdX1 secret-disk`
+`echo 'secret-disk   /dev/sdX1' | tee -a /etc/crypttab`
+`mkfs.ext4 /dev/mapper/secret-disk`
+`mkdir -p /secret`
+`echo '/dev/mapper/secret-disk   /secret   ext4   defaults 1 2' | tee -a /etc/fstab`
+`mount /secret`
+
+
+---
