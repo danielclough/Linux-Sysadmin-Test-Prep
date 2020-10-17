@@ -6,6 +6,8 @@
   items:
     - label: 'Documentation'
       link: '/basics/documentation'
+    - label: 'Downloding Files'
+      link: '/basics/downloading-files'
     - label: 'Archiving & Compression'
       link: '/basics/archiving-and-compression'
     - label: 'grep'
