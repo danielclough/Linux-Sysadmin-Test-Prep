@@ -58,6 +58,8 @@
       link: '/networking/email'
     - label: 'Time servers'
       link: '/networking/time-servers'
+    - label: 'Single Sign On (SSO)'
+      link: '/networking/single-sign-on-sso'
     - label: 'Network Scripting'
       link: '/networking/network-scripting'
 - label: Storage
