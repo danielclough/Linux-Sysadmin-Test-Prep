@@ -12,7 +12,9 @@
 - `ls /var/log`
 
 - `sudo tail /var/log/syslog`
-    `Timestamp, Hostname, App-Name, Message`
+    ```
+    Timestamp, Hostname, App-Name, Message
+    ```
 
 
 ### Tips
@@ -26,11 +28,12 @@
 - `ls /etc/rsyslog.d`
 
 - `cat /etc/rsyslog.d/50-default.conf`
-    `facility.priority     logLocation`
-    `cron.warn           /var/log/cron.warn` 
-    `cron.=info          /var/log/cron.info`
-    `cron.!=info         /var/log/cron.info`
-
+    ```
+    facility.priority   logLocation
+    cron.warn           /var/log/cron.warn 
+    cron.=info          /var/log/cron.info
+    cron.!=info         /var/log/cron.info
+    ```
 
 ### Tips
 
@@ -51,11 +54,6 @@ Lv. # | Lv. Name | Description
 
 [Rsyslog Docs](https://www.rsyslog.com/doc/master/index.html)
 
-### Quiz
-
-1. Enable cron logging for all levels to go to your user console
-    - create a cron error and verify it works
-1. Change cron logging for all levels in cron.log
 
 
 
@@ -63,12 +61,15 @@ Lv. # | Lv. Name | Description
 
 ### Tips
 `logger [options] [message]`
-    `-p, --priority`
-	- `logger -p cron.info " This is a info message from cron"`
+    
+	- `logger -p cron.info " This is a info message from cron"` (-p means priority)
 
 ### Quiz
+1. Enable cron logging for all levels to go to your user console
+    - create a cron error and verify it works
+1. Change cron logging for all levels to go to /var/log/cron.log
 1. Create a rule for `local4` critical level logs to be sent to `/var/log/local4-info.log`
-2. Use logger to send a message from local4 of critical level to the log
+1. Use logger to send a message from local4 of critical level to the log
 
 
 
