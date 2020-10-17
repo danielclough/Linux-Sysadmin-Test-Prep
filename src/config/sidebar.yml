@@ -68,8 +68,12 @@
   items:
     - label: 'Rsync'
       link: '/storage/rsync'
+    - label: 'fstab'
+      link: '/storage/fstab'
     - label: 'Disk Quotas'
       link: '/storage/disk-quotas'
+    - label: 'fdisk and mkfs'
+      link: '/storage/fdisk-and-mkfs'
     - label: 'Logical Volume Management (LVM)'
       link: '/storage/logical-volume-management-lvm'
     - label: 'Redundant Array of Independent Disks (RAID)'

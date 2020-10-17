@@ -1,6 +1,52 @@
 ---
-title: 'File Manipulation'
-description: .
+title: File Manipulation
+description:
 ---
 
-Covers: sed, ex
+## Complete each exercise in a single line of code.
+
+1. There are files we won't want mixed in with files we do want. 
+	Search all the folders and delete all the files with "junk" in their filename (case insensitive). 
+
+2. Then, delete everything in `/danielsTestDrills/answers/` except for files containing "answer" (case insensitive).
+
+---
+
+
+3. Copy lines 1, 2, 3, and 9 from `/danielsTestDrills/testFile-1` into a new file `/danielsTestDrills/testFile-2`.
+
+4. Copy all lines from `/danielsTestDrills/testFile-1` with with any data between "daniel" and "pass the LFCS" (case insensitive) and append into `/danielsTestDrills/testFile-2`.
+
+5. Copy any lines with the word "stuff" that does not come at the beginning or end (ignoring trailing whitespace) of a line from `/danielsTestDrills/testFile-1` and append into `/danielsTestDrills/testFile-2`.
+
+---
+
+6. Copy any lines with ! from `/danielsTestDrills/testFile-1` into a new file named `/danielsTestDrills/testFile-3`.
+
+7. Copy all lines with ordinal numbers (1st - 10th) from `/danielsTestDrills/testFile-1` into the file `/danielsTestDrills/testFile-3`.
+
+8. Copy any lines starting with daniel (case insensitive)from `/danielsTestDrills/testFile-1` into the file named `/danielsTestDrills/testFile-3`.
+
+9. Move the first line of `/danielsTestDrills/testFile-3` to the end of the file.
+
+
+---
+
+10. Delete any lines from `/danielsTestDrills/testFile-1` with the "junk" or "Junk" in them.
+
+11. Delete line 4 from `/danielsTestDrills/testFile-1`.
+
+12. Delete any lines starting or ending with "stuff" from `/danielsTestDrills/testFile-1`.
+
+---
+
+13. Compare the three files in `/danielsTestDrills` and put the file name of the different file into `/danielsTestDrills/answers/answerFile`. Do not include leading path information.
+
+14. Find the single unique line and append it to `/danielsTestDrills/answers/answerFile`
+
+Make a tar archive of the three testFile files and save it as`/danielsTestDrills/answers/testFiles.tar` and then remove the three files.
+
+
+
+
+# add `ex` `gc` ask about changes
