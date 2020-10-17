@@ -50,14 +50,17 @@ QUIT | 3 | Like TERM with default coredump.
 ## nice/renice
 
 
----
+Command         | PRI|   NI | CMD
+:------------- | :---------- | :---------- | :-----------
+`nice -1 vim dog`  | 18 |   1 | vim dog 
+`nice -5 vim dog`  | 14 |   5 | vim dog 
+`nice -10 vim dog` | 9 |   10 | vim dog 
+`nice -19 vim dog` | 0 |   19 | vim dog 
 
-## jobs
 
+`renice -13 -p 3564` (by PID)
 
----
-
-## fg
+`renice 14 -u ubuntu,daniel -g custom` (all in two users and 1 group)
 
 
 ---
@@ -104,10 +107,11 @@ Z | Zombie
 
 Key | Sort by:
 --- | ---
-P | %CPU
-M | %MEM
-N | PID 
-T | TIME+
+q | quit
+P | List by %CPU
+M | List by %MEM
+N | List by PID 
+T | List by TIME+
 u | Filter for a users process
 c | Toggle COMMAND display
 1 | Display individual CPU statistics
@@ -120,5 +124,13 @@ a | Move from area to area
 W | Save settings as default
 d | Set refresh rate
 Space | Force refresh
+
+---
+
+## fg
+
+1. `top` 
+1. `<Ctrl. Z>` (suspend)
+1. `fg` (bring jobs to forground)
 
 ---
