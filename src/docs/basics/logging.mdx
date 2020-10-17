@@ -1,0 +1,89 @@
+## Reading logs
+
+
+- `who` (is logged in now)
+
+- `last` (history of logins)
+    - `last <username>`
+    - `last <reboot>`
+    - `lastlog` (logins)
+    - `last log` (log files)
+
+- `ls /var/log`
+
+- `sudo tail /var/log/syslog`
+    `Timestamp, Hostname, App-Name, Message`
+
+
+### Tips
+
+`grep "invalid user" /var/log/auth.log`
+
+
+
+## rsyslog
+
+- `ls /etc/rsyslog.d`
+
+- `cat /etc/rsyslog.d/50-default.conf`
+    `facility.priority     logLocation`
+    `cron.warn           /var/log/cron.warn` 
+    `cron.=info          /var/log/cron.info`
+    `cron.!=info         /var/log/cron.info`
+
+
+### Tips
+
+- Rules are applied in order. Use numbers in filename to order rules.
+- Restart system service after changes.
+
+Lv. # | Lv. Name | Description
+--- | --- | ---
+1 | debug | Debug information from programs
+2 | info | Simple informational message - no intervention is required
+3 | notice | Condition that may require attention
+4 | warn | Warning
+5 | err | Error
+6 | crit | Critical condition
+7 | alert | Condition that needs immediate intervention
+8 | emerg | Emergency condition
+* | * | All conditions
+
+[Rsyslog Docs](https://www.rsyslog.com/doc/master/index.html)
+
+### Quiz
+
+1. Enable cron logging for all levels to go to your user console
+    - create a cron error and verify it works
+1. Change cron logging for all levels in cron.log
+
+
+
+## logger
+
+### Tips
+`logger [options] [message]`
+    `-p, --priority`
+	- `logger -p cron.info " This is a info message from cron"`
+
+### Quiz
+1. Create a rule for `local4` critical level logs to be sent to `/var/log/local4-info.log`
+2. Use logger to send a message from local4 of critical level to the log
+
+
+
+## logrotate
+
+### Tips
+
+- `cat /etc/logrotate.conf`
+- `logrotate -fv /etc/logrotate.conf`
+    - `-f`, `--force`
+    - `+-v`, `--verbose`
+
+
+### Quiz
+
+1. Enable compression on your log files
+2. Create a `logrotate` group and allow it to use the `logrotate` command
+3. Rotate your `lightdm` logs
