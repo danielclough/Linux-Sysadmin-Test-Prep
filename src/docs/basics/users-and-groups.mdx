@@ -3,9 +3,9 @@ title: 'Users and Groups'
 description: .
 ---
 
-## User/Group Management
+## Commands
 
-`usermod -d /home/heart -s /bin/sh -e 2020-10-30 user` 
+`usermod -d /home/heart -s /bin/sh -e 2020-10-30 username` 
 
 `usermod -L user` (--lock)
 
@@ -13,10 +13,13 @@ description: .
 
 `visudo -f /etc/sudoers.d/username`
 ```/etc/sudoers.d/username
-user ALL=NOPASSWD:/path/to/command
+user ALL=(ALL) NOPASSWD:/path/to/command, /path/to/another
+superuser ALL=(ALL) NOPASSWD:ALL
 ```
 
 ---
+
+## Exercise
 
 Create a new groups `oz`, `dogs`, `friends`.
 

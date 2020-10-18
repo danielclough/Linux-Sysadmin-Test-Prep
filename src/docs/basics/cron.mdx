@@ -3,21 +3,31 @@ title: 'cron'
 description: Automate everything!
 ---
 
-- Run `quiz` with the argument `cron`
-  This quiz matches strings instead of evaluating commands, so input must be entered without extra whitespace in the format specified by the question.
-
 ---
 
 ## Tips
+
+```
+ Example of job definition:
+ .---------------- minute (0 - 59)
+ |  .------------- hour (0 - 23)
+ |  |  .---------- day of month (1 - 31)
+ |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+ |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR 
+ |  |  |  |  |					sun,mon,tue,wed,thu,fri,sat
+ |  |  |  |  |
+ *  *  *  *  * `user-name` `command to be executed`
+```
+---
 
 ### Commands
 
 Command | Action
 --- | ---
-crontab -l | Lists all the user's cron tasks.
-crontab -e | Edit for root 
-crontab -e -u daniel | Edit for user Daniel
-crontab -r | Removes entry from spooler, but not crontab file.
+`crontab -l` | Lists all the user's cron tasks
+`crontab -e` | Edit for current user (root if sudo) 
+`crontab -e -u daniel` | Edit for user daniel
+`crontab -r` | Removes entry from spooler, but not crontab file
 
 ### Troubleshooting
 
@@ -25,7 +35,7 @@ crontab -r | Removes entry from spooler, but not crontab file.
 
 - `ps ax | grep cron`
 
-- Start, restart, and check status of cron.service
+- `start`, `restart`, and check `status` of cron.service
 
 - `* * * * * /bin/echo "cron works" >> /tmp/cronTest`
     (User syntax doesn't have the User field, root does.)
@@ -40,3 +50,10 @@ crontab -r | Removes entry from spooler, but not crontab file.
 - `grep cron /var/log/syslog`
 
 - Add `cron.crit /var/log/cron.log` in /etc/rsyslog.d/50-default.conf and `sudo /etc/init.d/rsyslog reload`
+
+---
+
+### Quiz
+
+- Run `quiz` with the argument `cron`
+  This quiz matches strings instead of evaluating commands, so input must be entered without extra whitespace in the format specified by the question.

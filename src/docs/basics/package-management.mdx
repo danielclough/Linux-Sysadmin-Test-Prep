@@ -2,3 +2,138 @@
 title: Package Management
 description:
 ---
+
+## dpkg
+
+`dpkg -l` (List packages)
+
+`dpkg -l package` (List packages matching pattern)
+
+1st character | indicates **desired state** | 2nd character | indicates **actual state**
+--- | --- | --- | ---
+    u | Unknown |     i | Installed`
+    i | Installed |     c | Configuration files are present, but the application is uninstalled.
+    r | Removed |     u | Unpacked. The files are unpacked, but not configured yet.
+    p | Purged |     f | The package is half installed, meaning that there was a failure part way through an installation that halted the operation.
+    h | Version held |     w | The package is waiting for a trigger from a separate package.
+    n | Not installed |     p | The package has been triggered by another package.
+
+- Third character r, or blank, indicates re-installation is required, or not.
+
+`dpkg -L package` (List the files installed by a package)
+
+`dpkg --get-selections` (List of all of packages, installed or not, but not purged)
+
+`dpkg --get-selections | awk '$2 ~ /^install/'` (Shows installed)
+
+`dpkg --get-selections | awk '$2 !~ /^install/'` (Shows not-installed, but not purged)
+
+`dpkg --get-selections packagename`
+
+`sudo dpkg -i debfile.deb` (--install; possibly broken)	`sudo apt-get install -f` (Fix)
+
+`dpkg -I debfile.deb` (--info)
+
+`dpkg -S /path/to/file` (--search; which package installed a file)
+
+## apt
+
+### apt-get
+
+`sudo apt-get install package=version`
+
+`sudo dpkg-reconfigure package`
+
+`apt-get install -s package` (Dry run)
+
+`apt-get download package` (But, don't install)
+
+`sudo apt-get source package` (Downloads to current directory)
+
+`sudo apt-get purge package` (Removes everything)
+
+`sudo apt-get autoremove` (Remove any packages that were installed as dependencies that are no longer required by any packages)
+
+`sudo apt-get --purge autoremove`
+
+`sudo apt-get autoclean` (Remove any package files on the local system that are associated with packages that are no longer available from the repositories)
+
+### apt-cache
+
+`apt-cache search package`
+
+`apt-cache show package`
+
+`apt-cache showpkg package` (More detail; including reverse dependencies)
+
+`apt-cache depends package`
+
+`apt-cache rdepends package`
+
+`apt-cache policy package` (Indicates version priority; determine if extra repositories or PPAs supersede default repositories)
+
+
+### apt-file 
+
+Includes the installation path of every file controlled by a package in the database. For package info without install.
+
+1. `sudo apt-get update`
+1. `sudo apt-get install apt-file`
+1. `sudo apt-get update`
+1. `sudo apt-file search /path/to/file`
+
+### Backup
+
+1. `dpkg --get-selections > ~/packagelist.txt` (Export the list of installed packages to a file)
+1. `cp -Rp /etc/apt/sources.list* ~/sources` (Backup your sources)
+1. `apt-key exportall > ~/trusted_keys.txt` (Backup  trusted key list)
+1. Backup configuration files you want to save.
+
+### Restore
+
+1. `sudo apt-key add ~/trusted_keys.txt`
+1. `sudo cp -R ~sources/* /etc/apt/`
+1. `sudo dpkg --clear-selections` (Mark non-essential packages for deinstallation)
+1. `sudo apt-get update` (Create records for all of the software we want to install)
+1. `sudo apt-get install dselect` (Manages upgrade)
+1. `sudo dselect update` (Build deselect database)
+1. `sudo dpkg --set-selections < packagelist.txt`
+1. `sudo apt-get dselect-upgrade` (Download and install any necessary packages)
+1. Copy configuration files from backup location.
+
+
+### PPA's
+
+`sudo add-apt-repository ppa:owner_name/ppa_name`
+`sudo apt-get update`
+
+### Add Repos
+
+In /etc/apt/sources.list.d/new_repo.list
+```
+`deb_or_deb-src url_of_repo release_code_name_or_suite component_names`
+```
+
+OR
+
+`sudo add-apt-repository 'deb url release component'`
+
+### unattended-upgrades
+
+Configure: `/etc/apt/apt.conf.d/50unattended-upgrades`
+
+The double “//” serve as comments.
+
+Enable: `/etc/apt/apt.conf.d/20auto-upgrades` (File may not exist)
+
+Numbers indicate frequency in days.
+
+`man apt.conf` (For more info)
+
+`less /usr/lib/apt/apt.systemd.daily` (Well documnted)
+
+`/var/log/unattended-upgrades` (Check log)
+
+Configure `Unattended-Upgrade::Mail` in `/etc/apt/apt.conf.d/50unattended-upgrades` to enable email notifications.
+
+Consider installing `apticron`
