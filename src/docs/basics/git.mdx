@@ -2,3 +2,233 @@
 title: Git
 description: 
 ---
+
+### Config
+
+`git config --global user.name "username"`
+
+`git config --global user.email "username@domain.tld"`
+
+`git config --global color.ui auto` (Colorization of command line output)
+
+`git config --global core.excludesfile ~/.gitignore_global` (Create global ignore file at `~/.gitignore_global`)
+
+### Setup
+
+`git clone <url>` (Download existing repository)
+
+`git init <reponame>` (Initialize new repository)
+
+`git status` (Check status of repository)
+
+`git remote add origin <url>` (Specify remote repository)
+
+
+
+
+## Workflow
+
+> ![Git Workflow CC-A:Daniel Kinzler](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Git_operations.svg/1101px-Git_operations.svg.png)
+
+Describing the above picture: "`git pull` fetches remote changes into the local clone, and merges them into the current working files.
+`git checkout` replaces the current working files with files from a branch.
+`git checkout --track` creates a local branch from a remote branch, links them, and replaces the current working files with files from that branch.
+`git fetch` downloads changes from a remote repository into the local clone
+`git reset` makes the current branch point to some specific revision or branch.
+`git reset --hard` makes the current branch point to some specific revision or branch, and replaces the current working files with the files from that branch.
+`git merge` merges files from a given branch into the current branch.
+`git push` uploads changes from local branches to the respective remote repositories.
+`git add` puts current working files into the stage (Aka index or cache)
+`git commit` commits staged changes to a local branch
+`git commit -a` commits all modified files to a local branch (shorthand for `git add` and `git commit`)" [- Daniel Kinzler](https://commons.wikimedia.org/wiki/File:Git_operations.svg)
+
+`git commit -m "<message>"` (Otherwise you type the message into prompt) 
+
+`git commit --amend -v` (Amend a commit)
+
+### git rm
+
+`git rm <filename>` (Removes file)
+
+`git rm --cached <filename>` (Removes file from index, but not from filesystem)
+
+`git rm -r --cached` (Remove all files from index, recursivly)
+
+
+### .gitignore
+
+`.gitignore` will not automatically untrack already commited files.
+To untrack already commited files you must remove them from the index, but not from filesystem! All subsequent commits will ignore the files.
+
+Symbol | Use
+--- | ---
+`*` | wildcard match
+`/` | ignore pathnames (Relative to the `.gitignore` file)
+`#` | comments
+
+```
+# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+
+# Ignore all text files
+*.txt
+
+# Ignore files related to API keys
+.env
+
+# - relative path understood by git
+/log/*.log
+
+# - relative path understood by the linux shell
+./log/*.log
+```
+
+`.gitignore` can also be used by other aplications (such as `tar`), but the syntax required is different, as noted above. 
+
+
+### git show
+
+
+`git show`
+
+`git show --oneline`
+
+`git show --oneline <commit>`
+
+`git show --oneline <commit>~1` (Parent of `<commit>`)
+
+`git show --oneline <commit>~2` (Grandparent of `<commit>`)
+
+Since branches have two commits:
+
+`git show --oneline <commit>^1`(1st parent of `<commit>`)
+
+`git show --oneline <commit>^2`(2nd parent of `<commit>`)
+
+Combined:
+
+`git show --oneline <commit>~3^2`(2nd parent of the great-grandparent of `<commit>`)
+
+
+
+### git reset and git revert
+
+`git reset` (Cancels commits and leaves files uncommitted)
+
+`git reset --soft <commit>` (Code appears uncommitted as it would from `<commit>`)
+
+
+`git reset --hard HEAD` (Back to the most recently-committed state)
+
+`git reset --hard <commit>` (Back to `<commit>`)
+
+`git revert` (Creates a revert commit, otherwise same as `reset`)
+
+### git branch
+
+`git branch` (See branches)
+
+`git branch <newbranch>` (Create a new branch)
+
+`git branch -d <branch>` (Delete `<branch>`)
+
+`git branch -D <branch>` (Force delete `<branch>`)
+
+`git branch -D $(git branch --merged | grep -v \* | xargs)` (Force delete all `--merged` branches)
+
+`git push origin <local_branch>:<remote_branch>`
+
+`git push origin :<branch_name>` (Delete a branch while pushing to a remote server)
+
+### git checkout
+
+`git checkout -b <branch>` (Change working directory to that of `<branch>`)
+
+`git checkout <commit>` (Change working directory state to that of `<commit>`)
+
+### git stash
+
+`git stash` (Save code without making a commit)
+
+`git stash list` (List stashes)
+
+`git stash apply` (Recall stashed state)
+
+`git stash apply stash@{1}` (Recall second before last stash; count starting with 0 here)
+
+`git drop <stash>` (Remove `<stash>`)
+
+`git stash clear` (Remove all stashes)
+
+`git checkout .` (Resets all uncommitted code)
+
+`git stash <branch>` (Copy stash to `<branch>`)
+
+
+### git merge
+
+`git merge <branchname>`
+
+`git merge --squash` (Combine commits)
+
+
+`git diff --merge` (Diff between the state of the source file in the staging area, and the versions from the parent branches)
+
+
+
+### diff and patch
+
+`diff -u file1 file2` 
+- “-” for each line that is in the first file but not in the second
+- “+” for each line that is in the second file but not the first
+
+`diff -u file1.txt file2.txt > patch.txt` (Change a copy of file1.txt to become exactly like file2.txt)
+
+`git diff <first-branch> <second-branch>` (Differences between two branches)
+
+
+### git log
+
+`git log`
+
+`git log --pretty=oneline`
+
+`git log --graph --oneline`
+
+`git log --follow <file>` (Version history including renames)
+
+`git log --merge` (Designed to be used during a merge conflict)
+
+Similar to `git log`
+
+`git shortlog` (Uses summary lines to create changelog-like output)
+
+`git format-patch --stdout` (Converts a series of commits to a series of emails)
+
+
+### git bisect
+
+Search between good and bad commits to find a problem.
+
+`git bisect start` (Start `git bisect`)
+`git bisect bad <commit>` (Tell `git bisect` `<commit>` is the bad one)
+`git bisect good <commit>` (Tell `git bisect` `<commit>` is the good one)
+`git bisect reset` (Reset to latest state)
+
+
+### git rebase
+
+An advanced topic, but just to give the gist...
+
+Do not (lightly) rebase changes in already shared repository as it will change the commit-ids and make combining those changes difficult. 
+
+`git rebase -i HEAD~#` (Change the commit messages, the order or the number of commits)
+
+`git rebase -i --onto <newbase> --root [<branch>]` (If running Git locally and have not pushed your branch to a remote repo)
+
+`git rebase -i [--onto <newbase> | --keep-base] <upstream> [<branch>]` (To push upstream)
+
+`git rebase -i --abort` (Abort the rebase!)
