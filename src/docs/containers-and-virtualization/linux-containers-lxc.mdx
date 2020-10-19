@@ -3,56 +3,192 @@ title: Linux Containers (LXC)
 description:
 ---
 
+## Install
 
-Setup:
-1. `sudo snap install lxd`
-1. `echo 'daniel veth lxcbr0 10' | sudo tee -a /etc/lxc/lxc-usernet`
-1. `mkdir -p ~/.config/lxc`
-1. `cp /etc/lxc/default.conf ~/.config/lxc/default.conf`
-1. `echo 'lxc.idmap = u 0 100000 65536
-lxc.idmap = g 0 100000 65536' >> ~/.config/lxc/default.conf`
+`sudo snap install lxd --channel=4.0/stable`
+
+`usermod -aG lxd <username>`
+
+`newgrp lxd` (Apply for group memberships immediately)
+
+`lxc` (overview of all available commands and options)
+
+`lxc --help`
+
+`lxc <command> --help`
+
+## Initialize 
+
+`sudo lxd init` (Initialize LXD)
+
+`lxd init --dump` (Dump info about current networking, storage pool, and profile)
+
+`lxc profile list`
+
+`lxc profile show <profilename>`
+
+`lxc network list`
+
+`lxc network show lxdbr0` (Or another `<networkname>`)
+
+`lxc storage list`
+
+`lxc storage show <storagename>`
+
+## Images
+
+`lxc remote list` (Show remote servers that can be used as `<imageserver>`)
+
+`lxc image list images` (Show local images)
+
+`lxc image list images:` (Show all available images)
+
+`lxc image list images: debian amd64` (Show available amd64 debian images)
+
+## Launch
 
 Usage:
-lxc launch imageserver:imagename instancename -p profile1 -c key1=value
+`lxc launch <imageserver>:<imagename> <instancename> [-p <profilename>] [-c <key> <value>]` (`-c` means config)
 
-lxc launch imageserver:imagename instancename -p profile1 -p profile2
+`lxc launch <imageserver>:<imagename> <instancename> --vm`
 
-lxc launch imageserver:imagename instancename -c key1=value -c key2=value
+`<imageserver>` (e.g. ubuntu or images)
 
-1. `systemd-run --unit=myshell --user --scope -p "Delegate=yes" lxc-start <container-name>`
-2. `chmod a+rx ~/.local ~/.local/share`
-3. `reboot/logout`
-4. `lxc-create -t download -n <container-name>`
-5. `lxc-start <container-name>`
+`<imagename>` (e.g. ubuntu/20.04/amd64)
 
-Autostart:
-1. `echo "lxc.start.auto = 1" | tee -a /var/lib/lxc/autostart_container/config`
-2. `lxc-autostart -a`
-    
-- `lxc-info <container-name>`
-- `lxc-ls -f`
-- `lxc-attach <container-name>`
-- `lxc-stop <container-name>`
-- `lxc-destroy <container-name>`
+`<instancename>` (e.g. trainer-one)
 
----
-Flags:
+`lxc launch ubuntu:20.04 trainer-one`
 
--p profilename   # apply a profile
+## Instances
 
--c key=value   # apply a config key/value 
+`lxc list` (Show local instances with network info)
 
+`lxc ls --help`
+
+`lxc ls --fast` (Show local instances with profile info)
+
+`lxc-info` (So much info)
+
+`lxc-info <instancename>` (So much info about `<instancename>`)
+
+`lxc start <instancename>`
+
+`lxc restart <instancename>`
+
+`lxc stop <instancename>`
+
+`lxc delete <instancename>`
+
+`lxc alias add delete "delete -i"` (Make alias for delete to always be prompted for approval when deleting)
+
+### Execute commands and login
+
+`lxc exec <instancename> -- <command>` 
+
+`lxc exec <instancename> -- apt-get update` (Example command)
+
+`lxc exec <instancename> -- <shellname>` (Login to `<instancename>` as root)
+
+`lxc exec <instancename> -- su --login <username>` (Login to `<instancename>` as `<username>`)
+
+`lxc console <instancename>` (Login to console; detach with `Ctrl+a-q`)
+
+
+## File transfer to/from instance
+
+`lxc file pull <instancename>/path/in/container path/on/host`
+
+`lxc file push <instancename>/path/in/container path/on/host`
+
+## Move (rename) instances
+
+`lxc mv <instancename> <new-instancename>` (Rename instance; Remember to change `hosts` and `hostname` files if needed)
+
+See further reading to migrate to another server.
+
+## Snapshots
+
+`lxc snapshot <instancename> <snapshotname>` (Create snapshot)
+
+`lxc restore <snapshotname> <instancename>` (Restore snapshot)
+
+`lxc delete <instancename>/<snapshotname>`
+
+
+## Config
+
+`lxc config set <instancename> <key> <value>`
+
+`lxc config edit <instancename>` (Edit instance configuration)
+
+`lxc config show <instancename> -e` (Show instance configuration)
+
+### Autostart
+
+`lxc config set <instancename> boot.autostart [true|false]`
+
+`lxc config set <instancename> boot.autostart.priority <integer>` (Highest priority starts first)
+
+`lxc config set <instancename> boot.autostart.delay <integer>` (After boot, wait before starting the next instance)
+
+`lxc config get <instancename> boot.autostart`
+
+## Profiles
 
 Usage:
 
-lxc profile set profilename key=value
+`lxc launch <imageserver>:<imagename> <instancename> -p profile1 -p profile2`
+
+`lxc launch <imageserver>:<imagename> <instancename> -c <key1> <value> -c <key2> <value>`
+
+Commands:
+
+`echo 'export EDITOR=vim' >> ~/.profile`
+
+`lxc profile show default`
+
+`lxc profile create <profilename>`
+
+`cat <profilename>.profile | lxc profile edit <profilename>`
+
+`lxc profile set <profilename> <key> <value>`
+
+`lxc profile add <instancename> <profilename>`
+
+`lxc profile remove <instancename> <profilename>`
+
+`lxc profile edit <profilename>`
+
+
+## Wipe and start over
+
+`systemctl stop snap.lxd.daemon.service`
+
+`rm -fr /var/lib/lxd/*`
+
+`rm -fr /var/snap/lxd/common/lxd/*`
+
+`systemctl start snap.lxd.daemon.service`
+
+`lxd init`
 
 
 
----
+## Further Reading:
 
-lxc profile show default
+[Docs for Stable-4.0](https://linuxcontainers.org/lxd/docs/stable-4.0/)
 
-lxc profile create profilename
+[A network isolated container in lxd.](https://blog.simos.info/a-network-isolated-container-in-lxd/)
 
-lxc profile edit profilename
+[How to make your lxd containers get ip addresses from your lan using a bridge.](https://blog.simos.info/how-to-make-your-lxd-containers-get-ip-addresses-from-your-lan-using-a-bridge/)
+
+[Using command aliases in lxd to exec a shell.](https://blog.simos.info/using-command-aliases-in-lxd-to-exec-a-shell/)
+
+[How to move/migrate lxd vm to another host on linux.](https://www.cyberciti.biz/faq/how-to-movemigrate-lxd-vm-to-another-host-on-linux/)
+
+[How to backup and restore lxd containers.](https://www.cyberciti.biz/faq/how-to-backup-and-restore-lxd-containers/)
+
+[How to disable firewall and nat rules on the lxd bridge.](https://www.cyberciti.biz/faq/how-to-disable-firewall-and-nat-rules-on-the-lxd-bridge/)
+
+[Tutorial Forum](https://discuss.linuxcontainers.org/c/tutorials)
