@@ -84,20 +84,20 @@ Includes the installation path of every file controlled by a package in the data
 
 ### Backup
 
-1. `dpkg --get-selections > ~/packagelist.txt` (Export the list of installed packages to a file)
-1. `cp -Rp /etc/apt/sources.list* ~/sources` (Backup your sources)
-1. `apt-key exportall > ~/trusted_keys.txt` (Backup  trusted key list)
+1. `dpkg --get-selections > ~/backup/packagelist.txt` (Export the list of installed packages to a file)
+1. `cp -rp /etc/apt/sources.list* ~/backup` (Backup your sources)
+1. `apt-key exportall > ~/backup/trusted_keys.txt` (Backup  trusted key list)
 1. Backup configuration files you want to save.
 
 ### Restore
 
-1. `sudo apt-key add ~/trusted_keys.txt`
-1. `sudo cp -R ~sources/* /etc/apt/`
+1. `sudo apt-key add /backup/trusted_keys.txt`
+1. `sudo cp -r /backup/sources* /etc/apt/`
 1. `sudo dpkg --clear-selections` (Mark non-essential packages for deinstallation)
 1. `sudo apt-get update` (Create records for all of the software we want to install)
 1. `sudo apt-get install dselect` (Manages upgrade)
 1. `sudo dselect update` (Build deselect database)
-1. `sudo dpkg --set-selections < packagelist.txt`
+1. `sudo dpkg --set-selections < /backup/packagelist.txt`
 1. `sudo apt-get dselect-upgrade` (Download and install any necessary packages)
 1. Copy configuration files from backup location.
 

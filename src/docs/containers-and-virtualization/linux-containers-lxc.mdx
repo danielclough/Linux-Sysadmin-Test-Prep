@@ -27,23 +27,31 @@ description:
 
 `lxc profile show <profilename>`
 
+## Network
+
 `lxc network list`
 
 `lxc network show lxdbr0` (Or another `<networkname>`)
+
+`lxc network delete <networkname>` (Don't do this now)
+
+## Storage
 
 `lxc storage list`
 
 `lxc storage show <storagename>`
 
+`lxc storage delete <storagename>` (Don't do this now)
+
 ## Images
 
-`lxc remote list` (Show remote servers that can be used as `<imageserver>`)
+`lxc remote list` (List remote servers that can be used as `<imageserver>`)
 
-`lxc image list images` (Show local images)
+`lxc image ls images` (List local images; `ls` is short for `list`)
 
-`lxc image list images:` (Show all available images)
+`lxc image ls images:` (List images available on the remote server named "images")
 
-`lxc image list images: debian amd64` (Show available amd64 debian images)
+`lxc image ls images: <imagename>` (eg. debian amd64)
 
 ## Launch
 
@@ -58,19 +66,23 @@ Usage:
 
 `<instancename>` (e.g. trainer-one)
 
+For Example:
+
 `lxc launch ubuntu:20.04 trainer-one`
+OR
+`lxc launch images:ubuntu/20.04/amd64 trainer-one`
 
 ## Instances
 
-`lxc list` (Show local instances with network info)
+`lxc ls` (Show local instances with network info)
 
 `lxc ls --help`
 
 `lxc ls --fast` (Show local instances with profile info)
 
-`lxc-info` (So much info)
+`lxc info` (So much info)
 
-`lxc-info <instancename>` (So much info about `<instancename>`)
+`lxc info <instancename>` (So much info about `<instancename>`)
 
 `lxc start <instancename>`
 
@@ -162,6 +174,12 @@ Commands:
 
 
 ## Wipe and start over
+
+`printf 'config: {}\ndevices: {}' | lxc profile edit default`
+
+`lxc storage delete default`
+
+`lxc network delete lxdbr0`
 
 `systemctl stop snap.lxd.daemon.service`
 
