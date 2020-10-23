@@ -36,7 +36,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // trackingId: ``,
+        trackingId: `G-HZSJ8X9Q69`,
       },
     },
     `gatsby-plugin-remove-trailing-slashes`,

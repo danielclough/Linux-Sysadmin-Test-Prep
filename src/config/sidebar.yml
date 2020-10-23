@@ -16,6 +16,8 @@
       link: '/basics/cron'
     - label: 'Processes'
       link: '/basics/processes'
+    - label: 'Ulimit'
+      link: '/basics/ulimit'
     - label: 'Logging'
       link: '/basics/logging'
     - label: 'File Manipulation'

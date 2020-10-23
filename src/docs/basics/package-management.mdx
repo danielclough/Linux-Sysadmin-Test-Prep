@@ -7,7 +7,7 @@ description:
 
 `dpkg -l` (List packages)
 
-`dpkg -l package` (List packages matching pattern)
+`dpkg -l <package>` (List packages matching pattern)
 
 1st character | indicates **desired state** | 2nd character | indicates **actual state**
 --- | --- | --- | ---
@@ -20,7 +20,9 @@ description:
 
 - Third character r, or blank, indicates re-installation is required, or not.
 
-`dpkg -L package` (List the files installed by a package)
+`dpkg -L <package>` (List the files installed by a package)
+
+`dpkg -V <package>` (Verify package)
 
 `dpkg --get-selections` (List of all of packages, installed or not, but not purged)
 
@@ -28,7 +30,7 @@ description:
 
 `dpkg --get-selections | awk '$2 !~ /^install/'` (Shows not-installed, but not purged)
 
-`dpkg --get-selections packagename`
+`dpkg --get-selections <package>`
 
 `sudo dpkg -i debfile.deb` (--install; possibly broken)	`sudo apt-get install -f` (Fix)
 
@@ -42,15 +44,15 @@ description:
 
 `sudo apt-get install package=version`
 
-`sudo dpkg-reconfigure package`
+`sudo dpkg-reconfigure <package>`
 
-`apt-get install -s package` (Dry run)
+`apt-get install -s <package>` (Dry run)
 
-`apt-get download package` (But, don't install)
+`apt-get download <package>` (But, don't install)
 
-`sudo apt-get source package` (Downloads to current directory)
+`sudo apt-get source <package>` (Downloads to current directory)
 
-`sudo apt-get purge package` (Removes everything)
+`sudo apt-get purge <package>` (Removes everything)
 
 `sudo apt-get autoremove` (Remove any packages that were installed as dependencies that are no longer required by any packages)
 
@@ -60,17 +62,21 @@ description:
 
 ### apt-cache
 
-`apt-cache search package`
+`apt-cache search <keyword>` 
 
-`apt-cache show package`
+`apt-cache search -n <keyword>` (search name only)
 
-`apt-cache showpkg package` (More detail; including reverse dependencies)
+`apt-cache pkgnames <keyword>` (search name-only)
 
-`apt-cache depends package`
+`apt-cache show <package>`
 
-`apt-cache rdepends package`
+`apt-cache showpkg <package>` (More detail; including reverse dependencies)
 
-`apt-cache policy package` (Indicates version priority; determine if extra repositories or PPAs supersede default repositories)
+`apt-cache depends <package>`
+
+`apt-cache rdepends <package>`
+
+`apt-cache policy <package>` (Indicates version priority; determine if extra repositories or PPAs supersede default repositories)
 
 
 ### apt-file 

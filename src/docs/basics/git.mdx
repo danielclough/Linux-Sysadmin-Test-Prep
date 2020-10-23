@@ -179,13 +179,13 @@ Combined:
 
 
 
-### diff and patch
+### git diff and patch
 
-`diff -u file1.txt file2.txt` 
+`git diff file1.txt file2.txt` 
 - “-” for each line that is in the first file but not in the second
 - “+” for each line that is in the second file but not the first
 
-`diff -u file1.txt file2.txt > patch.txt` (Create patch file to reconcile differences between `file1.txt` and `file2.txt`)
+`git diff file1.txt file2.txt > patch.txt` (Create patch file to reconcile differences between `file1.txt` and `file2.txt`)
 
 `git diff <first-branch> <second-branch>` (Differences between two branches)
 
