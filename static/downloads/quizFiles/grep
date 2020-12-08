@@ -1,0 +1,21 @@
+How many words in $qr/WORDS include either an a or a b or a c? & grep -c [abc] $qr/WORDS & UNKNOWN
+
+How many characters are in $qr/GPL-3? & grep -c . $qr/GPL-3 & UNKNOWN
+
+How many words in $qr/WORDS include lowercase letters? & grep -c [a-z] $qr/WORDS & UNKNOWN
+
+How many numbers in $qr/GPL-3 are followed by a period? & grep -c "[[:digit:]]\." $qr/GPL-3 & UNKNOWN
+
+How many characters in $qr/GPL-3 are not a letter? & grep -c "[^a-zA-Z]" $qr/GPL-3 & UNKNOWN
+
+How many lines in $qr/GPL-3 contain "and" at the end of a line? & grep -c "and$" $qr/GPL-3 & UNKNOWN
+
+How many lines in $qr/GPL-3 contain "GPL" at the beginning of a line? & grep -c "^GPL" $qr/GPL-3 & UNKNOWN
+
+How many lines in $qr/GPL-3 do not contain "the"? & grep -c -v "the" $qr/GPL-3 & UNKNOWN
+
+How many lines in $qr/GPL-3 contain two characters and then the string "cept"? & grep -c "..cept" $qr/GPL-3 & UNKNOWN
+
+How many lines in $qr/GPL-3 contain "too" or "two" and contain characters followed by "ode" except when that character is "m"? & grep "t[wo]o" $qr/GPL-3 | grep -c "[^m]ode" & UNKNOWN
+
+How many lines in $qr/GPL-3 contain an opening and closing parenthesis with only letters and single spaces in between? & grep -c "([A-Za-z ]*)" $qr/GPL-3 & UNKNOWN

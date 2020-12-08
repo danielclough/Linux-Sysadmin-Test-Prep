@@ -1,0 +1,37 @@
+How many words include abel followed by one or more i in $qr/WORDS? & egrep -c abeli+ $qr/WORDS & UNKNOWN
+
+How many words include abel followed by zero or one i in $qr/WORDS? & egrep -c abeli? $qr/WORDS & UNKNOWN
+
+How many whole words start with e followed by zero or more s in $qr/WORDS? & egrep -c "\bes*\b" $qr/WORDS & UNKNOWN
+
+How many words include e followed by 2 s in $qr/WORDS? & egrep -c "es{2}" $qr/WORDS & UNKNOWN
+
+How many words include e followed by 2 or more s in $qr/WORDS? & egrep -c "es{2,}" $qr/WORDS & UNKNOWN
+
+How many words include e followed by 2 s - ending on the final s in $qr/WORDS? & egrep -c "es{2}\b" $qr/WORDS & UNKNOWN
+
+How many words include e followed by 2 or more s - ending on the final s in $qr/WORDS? & egrep -c "es{2,}\b" $qr/WORDS & UNKNOWN
+
+How many words include 3 to 5 s in $qr/WORDS? & egrep -c "s{3,5}" $qr/WORDS & UNKNOWN
+
+How many words include the group abc in $qr/WORDS? & egrep -c "(abc)" $qr/WORDS & UNKNOWN
+
+How many words include s followed by the sequence of es in $qr/WORDS? & egrep -c "s(es)" $qr/WORDS & UNKNOWN
+
+How many words include s followed by zero or more copies of the sequence es in $qr/WORDS? & egrep -c "s(es)*" $qr/WORDS & UNKNOWN
+
+How many words include s followed by 2 up to 5 copies of the sequence es in $qr/WORDS? & egrep -c "s(es){2,5}" $qr/WORDS & UNKNOWN
+
+How many words include a followed by b or c (and captures b or c)  in $qr/WORDS? & egrep -c "a(b|c)" $qr/WORDS & UNKNOWN
+
+How many matches for "copyright" and "right" (but not the plural forms) in $qr/GPL-3? & egrep -c "(copy)?right"[^s] $qr/GPL-3  & UNKNOWN
+
+How many matches for "free" plus one or more non-whitespace characters and containing "GPL" or "General Public License" in $qr/GPL-3? & egrep "free[^[:space:]]+" $qr/GPL-3 | egrep -c "(GPL|General Public License)" & UNKNOWN
+
+How many matches for triple-vowel words in $qr/GPL-3? & egrep -c "[AEIOUaeiou]{3}" $qr/GPL-3 & UNKNOWN
+
+How many matches for words that have between 16 and 20 characters in $qr/GPL-3? & egrep -c "[[:alpha:]]{16,20}" $qr/GPL-3 & UNKNOWN
+
+How many matches for characters one or more times included inside < and > in $qr/GPL-3? & egrep -c "<.+>" $qr/GPL-3 & UNKNOWN
+
+How many matches for characters except < or > one or more times included inside < and > in $qr/GPL-3? & egrep -c "<[^<>]+>" $qr/GPL-3 & UNKNOWN

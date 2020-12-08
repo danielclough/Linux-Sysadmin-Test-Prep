@@ -1,0 +1,15 @@
+Display the most cpu consumptive process being run by your default user.  & ps aux --sort=-pcpu | grep 1000| head -1  & UNKOWN
+
+How much memory is being used by the most memory consumptive process being run by root user.  & ps aux --sort=-pmem | grep root| head -1 |tr -s " " | cut -d " " -f4  & UNKOWN
+
+What command was run by the system init process? & ps 1 | grep init |tr -s " " | cut -d " " -f6,7  & UNKOWN
+
+Use ps to find out the day and time your computer started, to the minute. & ps aux | head | grep init | tr -s " " | cut -d " " -f 9,10  & UNKOWN
+
+How many instances of bash are you running? & ps -C bash | grep bash |wc -l  & UNKOWN
+
+How many processes is your default user running? & ps -u 1000 | wc -l  & UNKOWN
+
+List all the output options  & ps L  & UNKOWN
+
+List all users other than your default user and root running processes, the %cpu, %memory, and the command used to start the process. & ps -eo user,%cpu,%mem,cmd | grep -v -e daniel  -e root & UNKOWN

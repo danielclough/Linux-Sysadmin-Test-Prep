@@ -4,10 +4,8 @@
   items:
     - label: 'Documentation'
       link: '/basics/documentation'
-    - label: 'Downloding Files'
-      link: '/basics/downloading-files'
-    - label: 'Archiving & Compression'
-      link: '/basics/archiving-and-compression'
+    - label: 'Downloading and Archiving Files'
+      link: '/basics/downloading-and-archiving-files'
     - label: 'Finding Files'
       link: '/basics/finding-files'
     - label: 'grep'

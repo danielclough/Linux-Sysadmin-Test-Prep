@@ -3,6 +3,8 @@ title: Finding Files
 description: .
 ---
 
+# find
+
 In folder: `find ./test -name "filename.txt"`
 
 With wildcard: `find ./test -name "*.txt"`
@@ -33,7 +35,7 @@ sgid/suid nubers: `find / -perm 2644`
 
 sgid/suid symbols: `find / -maxdepth 2 -perm /u=s`
 
-Read Only files: `find /etc -maxdepth 1 -perm /u=r`
+User read permissisions: `find /etc -maxdepth 1 -perm /u=r`
 
 Executable files: `find /bin -maxdepth 2 -perm /a=x`
 
@@ -43,9 +45,19 @@ By group: `find /var/www -group groupname`
 
 In home: `find ~ -name "*.txt"`
 
-All 50MB files: `find / -size 50M`
+All 50 mebibyte files: `find / -size 50M`
+  
+  Unit | Meaning
+  --- | ---
+  `b`  |  for 512-byte blocks (this is the default if no suffix is used)
+  `c`  |  for bytes
+  `w`  |  for two-byte words
+  `k`  |  for kibibytes (KiB, units of 1024 bytes)
+  `M`  |  for mebibytes (MiB, units of 1024 * 1024 = 1048576 bytes)
+  `G`  |  for gibibytes (GiB, units of 1024 * 1024 * 1024 = 1073741824 bytes)
 
-greater than 50MB and less than 100MB: `find / -size +50M -size -100M`
+
+greater than 50 mebibyte and less than 100MB: `find / -size +50M -size -100M`
 
 List the largest file in the current directory and its subdirectory: `find . -type f -exec ls -s {} \; | sort -n -r | head -1`
 
@@ -63,21 +75,21 @@ Delete files larger than 100MB: `find /home/username/dir -type f -name *.log -si
 
 Delete empty directories: `find <DIR> -type d -empty -delete`
 
-Write .tar filenames, one per line, with relative paths: `cd <DIR> && find . -name '*.tar' > toBeCompressed.txt​`
+Find .tar files, and write it's contents one item per line, with relative paths: `cd <DIR> && find . -name '*.tar' > toBeCompressed.txt​`
 
 Delete all executable files: `find <DIR> -type f -executable -delete`
 
-Change 777 fiels to 644: `find <DIR> -type f -perm 777 -print -exec chmod 644 {} \;`
+Change 777 files to 644: `find <DIR> -type f -perm 777 -print -exec chmod 644 {} \;`
 
-Change read only directories to 755: `find <DIR> -type d /u=r -print -exec chmod 755 {} \;`
+Change read only directories to 755: `find <DIR> -type d -perm 444 -print -exec chmod 755 {} \;`
 
 Change ownership of all group developer files and directories to group and user admin: `find <DIR> -group developer -print -exec chown admin:admin {} \;`
 
 Accessed (read), Modified (data), and Changed (metadata like chmod)
 
-Modified 50 days back: `find / -mtime 50`
+Modified 50 days ago: `find / -mtime 50`
 
-Accessed in the last 50 days: `find / -atime 50`
+Accessed in the last 50 days: `find / -atime -50`
 
 Modified between 50 to 100 days ago: `find / -mtime +50 –mtime -100`
 
@@ -86,3 +98,8 @@ Changed within the last 1 hour: `find /home/username -cmin -60`
 Modified in last 1 hour: `find / -mmin -60`
 
 Accessed Files in Last 1 Hour: `find / -amin -60`
+
+## quiz
+- Execute `quiz find`
+
+# locate

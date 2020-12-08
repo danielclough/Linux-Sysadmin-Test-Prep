@@ -1,0 +1,105 @@
+    PID TTY          TIME CMD
+   4044 ?        00:08:30 systemd
+   4045 ?        00:00:00 (sd-pam)
+   4061 ?        00:02:47 dbus-daemon
+   4161 ?        00:00:00 gvfsd
+   4169 ?        00:00:00 gvfsd-fuse
+   4187 ?        00:00:00 at-spi-bus-laun
+   4195 ?        00:00:21 dbus-daemon
+   4204 ?        00:00:05 xfconfd
+   4364 ?        00:00:03 applet.py
+   4433 ?        00:00:00 agent
+   4519 ?        00:01:00 redshift
+   4617 ?        00:00:00 obexd
+   4748 ?        00:24:05 gvfs-udisks2-vo
+   4781 ?        00:00:00 gvfs-goa-volume
+   4783 ?        00:00:00 dconf-service
+   4808 ?        00:00:00 gvfs-mtp-volume
+   4825 ?        00:00:00 gvfs-gphoto2-vo
+   4848 ?        00:00:14 gvfs-afc-volume
+   4987 ?        00:01:16 gvfsd-metadata
+   5016 ?        00:02:40 gvfsd-trash
+ 207392 ?        00:19:46 sublime_text
+ 207409 ?        00:00:17 plugin_host
+ 438353 ?        00:58:21 keybase
+ 438407 ?        00:00:00 keybase-redirec
+ 438409 ?        00:19:02 kbfsfuse
+ 549620 ?        00:00:06 xfdesktop
+ 659185 pts/0    00:00:00 bash
+ 659841 ?        00:10:28 Web Content
+ 688024 pts/2    00:00:00 ssh
+ 925898 ?        00:00:00 gvfsd-network
+ 925939 ?        00:00:04 gvfsd-dnssd
+ 979906 ?        00:00:54 Web Content
+1017144 ?        00:00:01 rambox
+1039791 ?        00:00:00 Web Content
+1072219 ?        00:00:00 rambox
+1072625 pts/0    00:00:00 ps
+1659544 ?        00:00:01 gnome-keyring-d
+1659552 ?        00:00:08 xfce4-session
+1659638 ?        00:00:01 ssh-agent
+1659648 ?        00:18:39 ibus-daemon
+1659660 ?        00:00:00 ibus-memconf
+1659662 ?        00:02:29 ibus-ui-gtk3
+1659663 ?        00:01:56 ibus-extension-
+1659667 ?        00:00:04 ibus-x11
+1659670 ?        00:00:01 ibus-portal
+1659678 ?        00:00:47 at-spi2-registr
+1659685 ?        00:00:08 xfce4-screensav
+1659693 ?        00:03:14 ibus-engine-sim
+1659705 ?        03:27:46 xfwm4
+1659713 ?        00:00:35 xfsettingsd
+1659714 ?        00:02:15 xfce4-panel
+1659720 ?        00:11:31 Thunar
+1659728 ?        00:00:13 panel-1-whisker
+1659729 ?        00:01:28 panel-13-weathe
+1659730 ?        00:00:29 panel-5-systray
+1659732 ?        00:00:05 panel-6-notific
+1659734 ?        00:00:04 panel-7-indicat
+1659736 ?        00:00:12 panel-9-power-m
+1659740 ?        00:04:27 panel-10-pulsea
+1659749 ?        00:44:46 rambox
+1659751 ?        00:00:08 redshift-gtk
+1659753 ?        00:15:52 guake
+1659765 ?        00:00:02 applet.py
+1659767 ?        00:00:00 indicator-messa
+1659770 ?        00:00:05 polkit-gnome-au
+1659771 ?        00:00:00 rambox
+1659772 ?        00:00:11 update-notifier
+1659775 ?        00:00:00 xiccd
+1659779 ?        00:01:10 kdeconnectd
+1659780 ?        00:01:44 pulseaudio
+1659781 ?        00:00:08 xfce4-notifyd
+1659792 ?        00:00:06 nm-applet
+1659801 ?        00:00:05 blueman-applet
+1659805 ?        00:00:03 rambox
+1659811 ?        00:00:00 agent
+1659816 ?        00:00:20 xfce4-power-man
+1659857 ?        00:00:49 redshift
+1659919 ?        00:00:06 blueman-tray
+1659921 ?        01:34:45 rambox
+1659923 ?        00:10:02 rambox
+1659949 ?        00:00:00 rambox
+1659957 ?        00:10:46 rambox
+1660261 ?        00:15:19 rambox
+1660264 ?        00:18:53 rambox
+1660275 ?        06:59:06 rambox
+1660471 ?        00:02:53 rambox
+1660656 pts/2    00:00:01 bash
+1660669 pts/4    00:00:02 bash
+1661973 ?        00:00:00 ibus-engine-lib
+1663100 ?        00:00:16 xfce4-appfinder
+1737291 ?        00:00:00 ssh-agent
+2886341 ?        02:33:11 firefox
+2886575 ?        00:19:54 Web Content
+2886620 ?        00:02:40 Privileged Cont
+2886713 ?        00:21:44 WebExtensions
+2889334 ?        00:00:24 gnome-software
+3115515 ?        00:00:31 liferea
+3115527 ?        00:01:23 WebKitWebProces
+3115528 ?        00:00:01 WebKitNetworkPr
+3591033 ?        00:00:00 RDD Process
+3646969 ?        00:00:00 gvfsd-http
+3657348 ?        00:01:41 rambox
+3771715 ?        00:10:49 Web Content
+4011417 ?        00:00:00 xdg-open <defunct>

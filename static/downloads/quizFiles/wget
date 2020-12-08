@@ -1,0 +1,39 @@
+awesomeSize=236
+actualsize=$(du -k awesome.svg | cut -f 1)
+
+if [ $actualsize -ge $awesomeSize ]; then
+    echo 'You got Q1 correct!'
+else
+    echo 'You got Q1 wrong... :('
+fi
+echo
+
+echo "youtube.com
+en.wikipedia.org" > correctLinks
+diff links correctLinks 1> fail 2>&1
+
+if [ -s fail ]; then
+	echo 'Q2 Fail. Try again.'
+	cat fail
+	rm fail
+else
+	echo 'Q2 is correct!'
+fi
+echo
+
+
+if [ -s index.html.1 ]; then
+	echo 'It seems that Q3 is correct.'
+else
+	echo 'Q3 is wrong, you are missing index.html.1'
+fi
+echo
+
+if [ -s dizer.netlify.app/assets/images/bg/p.png ]; then
+	echo 'You did Q4 & Q5 correctly.'
+else
+	echo 'You are missing files you should have from Q5.'
+fi
+echo
+
+echo 'Keep up the good work!'

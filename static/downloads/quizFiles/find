@@ -1,0 +1,53 @@
+Find with files in /LinuxTestDrills with the extension ".txt". & find /LinuxTestDrills -name "*.txt" & UNKNOWN
+
+Find with files in /LinuxTestDrills with the extension ".txt" ignoring case. & find /LinuxTestDrills -iname "*.txt"`  & UNKNOWN
+
+Find with files in /LinuxTestDrills with the extension ".txt" ignoring case, but not in subfolders. & find /LinuxTestDrills -maxdepth 0 -iname "*.txt" & UNKNOWN
+
+Find files that do not include "junk" in the title. & find /LinuxTestDrills -not -name "*junk*" & UNKNOWN
+
+Ignoring case, find files that include "junk" in the title, but not ".txt". & find /LinuxTestDrills -iname '*junk*' ! -iname '*.txt'
+
+Find .txt files in /LinuxTestDrills/answers, if there are none with correct the case try case insensitive & find /LinuxTestDrills/answers -name '*.txt' -o -iname '*.tXt' & UNKNOWN
+
+Find only files with "answer" in the title. & find /LinuxTestDrills -type f -name "*answer*" & UNKNOWN
+
+Find only directories with "answer" in the title. & find /LinuxTestDrills -type d -name "*answer*" & UNKNOWN
+
+Find ".txt" files in /LinuxTestDrills/answers and /LinuxTestDrills/perms. & find /LinuxTestDrills/perms /LinuxTestDrills/answers -type f -name "*.txt" & UNKNOWN
+
+Find all hidden files in your home directory. & find ~ -type f -name ".*" & UNKNOWN
+
+Find files in /LinuxTestDrills with permissions 000. & find . -type f -perm 000 & UNKNOWN
+
+Find suid files in /usr/bin/ . & find /usr/bin/ -maxdepth 0 -perm /u=s & UNKNOWN
+
+Find read Only files in /etc . & find /etc -perm 444 & UNKNOWN
+
+Find files in /LinuxTestDrills owned by root. & find /LinuxTestDrills -user root & UNKNOWN
+
+Find files in /LinuxTestDrills owned by group root. & find /LinuxTestDrills -group root & UNKNOWN
+
+Find files in your home directory, but not subdirectories with "bash" in the name. & find ~  -maxdepth 0 -type f -name "*bash*" & UNKNOWN
+
+Find all 1 mebibyte files in /LinuxTestDrills . & find /LinuxTestDrills -type f -size 1M & UNKNOWN
+
+Find files greater than 1 mebibytes but less than 10 mebibytes in /LinuxTestDrills . & find / -size +1M -size -10M & UNKNOWN
+
+Find all files in /LinuxTestDrills that are empty. & find /LinuxTestDrills -type f -empty & UNKNOWN
+
+Find all files in /LinuxTestDrills list and list them in order of size. & find /LinuxTestDrills -exec ls -S {} \; & UNKNOWN
+
+Find everything in /LinuxTestDrills modified within 50 minutes. & find . -mmin -50 & UNKNOWN
+
+Find everything in /LinuxTestDrills accessed in the last 5 days. & find / -atime -5 & UNKNOWN
+
+Find everything in /LinuxTestDrills modified between 1 to 10 days ago. & find /LinuxTestDrills -mtime +1 –mtime -10 & UNKNOWN
+
+Find list the largest file in /LinuxTestDrills. & find /LinuxTestDrills -type f -exec ls -s {} \; | sort -n -r | head -1 & UNKNOWN
+
+Find list the 5 smallest file in /LinuxTestDrills. & find /LinuxTestDrills -type f -exec ls -s {} \; | sort -n | head -5 & UNKNOWN
+
+Find the number of files in /usr/bin executable by anyone. & find /usr/bin -type f -perm /o=x | wc -l & UNKNOWN
+
+Find .tar files, and write it's contents one item per line, with relative paths. & cd <DIR> && find . -name '*.tar' > toBeCompressed.txt​ & UNKNOWN

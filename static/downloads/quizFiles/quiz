@@ -1,0 +1,92 @@
+#!/bin/bash
+# Usage Example: `quiz grep`
+IFS=$'\n'
+filename=$1
+qr=$(dirname $(realpath $0 ))
+
+
+red='\x1b[31m \n'
+yellow='\x1b[33m \n'
+blue='\e[1;34m \n'
+clear='\e[0m'
+clear2='\e[0m \n\n'
+
+user_answer="${yellow}Your answer: $clear"
+correct_answer="${yellow}Correct answer: $clear"
+
+true="${blue}Correct!$clear2"
+false="${red}false!$clear2"
+
+
+case "$1" in
+grep|egrep|find)
+	for line in $(cat $qr/$1); do
+		status=$(cut -d '&' -f 3 <<<"$line")
+		if [ "$status" != KNOWN ]; then
+			question="$yellow"$(cut -d '&' -f 1 <<<"$line")"$clear2"
+			printf $question;
+			while read -p "enter command: " input ; do
+				raw_answer=$(cut -d '&' -f 2 <<<"$line")
+				output=$(eval $input)
+				answer=$(eval $raw_answer)
+			 	if [ "$output" = "$answer" ]; then
+				 	printf $correct_answer"$answer \n\n"
+				 	printf $true
+				 	cLine=$(grep -n $(cut -d '&' -f 1 <<<"$line") $qr/$1 |cut -f1 -d:)
+				 	sed -i "$cLine s/UNKNOWN/ KNOWN/g" $qr/$1
+				 	break
+				else
+				 	printf $user_answer"$output \n\n"
+				 	printf $correct_answer"$answer \n\n"
+				 	printf $false
+				 	printf $question
+				fi
+			done
+		else
+			break
+		fi
+	done ;;
+cron) 
+	for line in $(cat $qr/$1); do
+		status=$(cut -d '&' -f 3 <<<"$line")
+		if [ "$status" != KNOWN ]; then
+			question="$yellow"$(cut -d '&' -f 1 <<<"$line")"$clear2"
+			printf $question;
+			while read -p "enter command: " input ; do
+				answer=$(cut -d '&' -f 2 <<<"$line")
+			 	if [ $input = $answer ]; then
+				 	printf $correct_answer"$answer \n\n"
+				 	printf $true
+				 	cLine=$(grep -n $(cut -d '&' -f 1 <<<"$line") $qr/$1 |cut -f1 -d:)
+				 	sed -i "$cLine s/UNKNOWN/ KNOWN/g" $qr/$1
+				 	break
+				else
+				 	printf $user_answer"$input \n\n"
+				 	printf $correct_answer"$answer \n\n"
+				 	printf $false
+				 	printf $question
+				 	cLine=$(grep -n "$answer" $1 |cut -f1 -d:)
+				 	ex -s -c "$cLine"m0 -c wq $1
+				fi
+			done
+		else
+			break
+		fi
+	done 
+;;
+
+wget|tar)
+	. $qr/"$1"
+;;
+
+reset)
+	 	sed -i "s/ KNOWN/ UNKNOWN/g" $qr/$2
+	 	echo -e "Reset Complete! \n"
+;;
+
+*)
+	echo -e '\n Follow the command with the name of the unit you are working on.
+	For example: quiz grep \n \n
+	To reset a known questions on a quiz type "quiz reset <unit>"
+	For example: quiz reset cron \n'
+esac

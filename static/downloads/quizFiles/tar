@@ -1,0 +1,43 @@
+diff <($(tar tf /LinuxTestDrills/archives/downloads.tar 2> fail)) <($(tar tf answers/remove 2> fail)) 2> fail 1>&2
+if [ -s fail ]; then
+	echo 'Q1 & Q2 Fail. Try again.'
+	cat fail
+	rm fail
+else
+	echo 'Q1 & Q2 are correct!'
+fi 
+echo
+
+
+if [ -r answers/answerFile ]; then
+	echo 'Q3 fail... You did not properly maintain permissions!'
+else
+	echo 'Good job on Q3!'
+fi
+echo
+
+[ "$(ls -A /LinuxTestDrills/downloads)" ] && 
+	echo "downloads directory Not Empty!" || 
+	echo "downloads directory is Empty! Q4 pass!"
+
+diff <($(tar tf /LinuxTestDrills/archives/downloads.tar 2> fail)) <($(tar tf answers/toss 2> fail))  2> fail 1>&2
+if [ -s fail ]; then
+	echo 'Q5 Fail. Try again.'
+	cat fail
+	rm fail
+else
+	echo 'Q5 is correct!'
+fi
+echo
+
+diff <($(ls -SC | grep -e bz -e  xz -e  zip)) answers/trash 2> fail 1>&2
+if [ -s fail ]; then
+	echo 'Q6 Fail. Try again.'
+	cat fail
+	rm fail
+else
+	echo 'You got Q6 right!'
+fi
+echo
+
+echo "You are going to be a Linux Master Soon!"

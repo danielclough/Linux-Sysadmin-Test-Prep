@@ -1,0 +1,55 @@
+Run cron job every 5th minute. &*/5 * * * *& UNKOWN
+
+Run a cron job every quarter hour. &*/15 * * * *& UNKOWN
+
+Run a cron job every hour at minute 30. &30 * * * *& UNKOWN
+
+Define multiple time intervals for every hour, at minute 0, 5 and 10. &0,5,10 * * * *& UNKOWN
+
+Run a job every half hour. &*/30 * * * *& UNKOWN
+
+Run a job every hour at minute 0. &0 * * * *& UNKOWN
+
+Run a job every 2 hours. &0 */2 * * *& UNKOWN
+
+Run a job every day at 00:00. &0 0 * * *& UNKOWN
+
+Run a job every day at 3am. &0 3 * * *& UNKOWN
+
+Run a job every Sunday at exactly at 00:00 with numeral syntax. &0 0 * * 0& UNKOWN
+
+Run a job every Sunday at exactly at 00:00 with lowercase alpha syntax. &0 0 * * sun& UNKOWN
+
+Run a job on every day-of-week at 00:00 from Monday through Friday with numeral syntax. &0 0 * * 1-5& UNKOWN
+
+Run a job every month at 00:00. &0 0 1 * *& UNKOWN
+
+Run a job at 16:15 on the 1st day-of-month. &15 16 1 * *& UNKOWN
+
+Run a job on the 1st day of every quarter. &0 0 1 */3 *& UNKOWN
+
+Run a job at 00:05 in April. &5 0 * 4 *& UNKOWN
+
+Run a job every 6 months at 00:00 on day-of-month 1 in every 6th month. &0 0 1 */6 *& UNKOWN
+
+Run a job every year. &0 0 1 1 *& UNKOWN
+
+At 04:05 every day. &5 4 * * *& UNKOWN
+
+At 00:05 in August. &5 0 * 8 *& UNKOWN
+
+At 14:15 on the 1st day of every month. &15 14 1 * *& UNKOWN
+
+At 22:00 Monday through Friday with numeral syntax. &0 22 * * 1-5& UNKOWN
+
+At minute 23 past every 2nd hour from 0 through 20. &23 0-20/2 * * *& UNKOWN
+
+At 04:05 on Sunday with lowercase alpha syntax. &5 4 * * sun& UNKOWN
+
+At minute 0 past hour 0 and 12 on day-of-month 1 in every 2nd month. &0 0,12 1 */2 *& UNKOWN
+
+At 04:00 on every day-of-month from 8 through 14. &0 4 8-14 * *& UNKOWN
+
+At 00:00 on day-of-month 1 and 15 and on Wednesday with numeral syntax. &0 0 1,15 * 3& UNKOWN
+
+At 00:00 on Sunday with non-standard @time syntax. &@weekly& UNKOWN

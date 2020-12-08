@@ -6,20 +6,30 @@ description:
 ### KVM
 
 Install:
-- `grep -e vmx -e svm /proc/cpuinfo`
-- `sudo apt install kvm* qemu* libvirt*`
+- `egrep -c '(vmx|svm)' /proc/cpuinfo` (Check CPU Virtualization Support for AMD-V and Intel-VT)
+	OR,
+	- `sudo apt install cpu-checker`
+	- `sudo kvm-ok`
+
+
+- `sudo apt install kvm* qemu* libvirt*` 
+	- `bridge-utils` (allow users other than the host system)
+	- `virt-manager` (gui)
 - `sudo systemctl enable libvirtd`
 - `sudo systemctl start libvirtd`
-
+	- `lsmod | grep -i kvm` 
 
 Save space on drive:
 1. `sudo mv /var/lib/libvirt/images /largeDisk/images`
 2. `sudo ln -s /largeDisk/images /var/lib/libvirt/images`
 
-Create VM
+Create VM with `qemu-img` and `qemu-system-x86_64`
 1. `sudo qemu-img create -f qcow2 /var/lib/libvirt/images/TinyCore.qcow2 24M`
-2. `sudo qemu-system-x86_64 -hda /var/lib/libvirt/images/TinyCore.qcow2 \
-    -cdrom /home/daniel/Distros/TinyCorePure64-11.1.iso`
+2. `sudo qemu-system-x86_64 -hda /var/lib/libvirt/images/TinyCore.qcow2 -cdrom /home/daniel/Distros/TinyCorePure64-11.1.iso`
+
+Create VM with `virt-install` 
+
+1. `sudo virt-install --name=KVMTest --vcpu=2 --ram=2048 --location=/home/daniel/Distros/debian-10.5.0-amd64-xfce-CD-1.iso`
 
 ---
 ### virsh
